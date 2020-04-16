@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
+
   namespace :admins do
-  	devise_for :users
+  	devise_for :users, controllers: {
+      sessions: 'admins/users/sessions',
+      registrations: 'admins/users/registrations',
+      passwords: 'admins/users/passwords'
+    }
   	resources :items, only: [:index, :new, :create, :show, :edit, :update]
   	resources :genres, only: [:index, :create, :edit, :update]
   	resources :orders, only: [:index, :show, :update]
@@ -11,7 +16,11 @@ Rails.application.routes.draw do
   end
 
   scope module: :customers do
-  	devise_for :end_users
+  	devise_for :end_users, controllers: {
+      sessions: 'customers/end_users/sessions',
+      registrations: 'customers/end_users/registrations',
+      passwords: 'customers/end_users/passwords'
+    }
   	resources :end_users
   	resources :items, only: [:index, :show]
   	resources :cart_items, only: [:index, :create, :destroy, :update]
