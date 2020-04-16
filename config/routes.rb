@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   	root to: 'homes#top'
   end
 
-  scope :customers do
+  scope module: :customers do
   	devise_for :end_users
   	resources :end_users
   	resources :items, only: [:index, :show]
