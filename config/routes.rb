@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 
   namespace :admins do
+    get 'genres/index'
+    get 'genres/edit'
+  end
+  namespace :admins do
   	devise_for :users, controllers: {
       sessions: 'admins/users/sessions',
       registrations: 'admins/users/registrations',
