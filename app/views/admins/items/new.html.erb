@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+	  <h1>商品新規登録画面</h1>
+
+	  <%= form_for(@item) do |f| %>
+
+	    <div class="field">
+	      <%= f.label :image %>
+	      <%= f.attachment_field :image %>
+	    </div>
+
+	    <div class="field">
+	      <%= f.label :商品名 %>
+	      <%= f.text_field :name, class: "name" %>
+	    </div>
+
+	    <div class="field">
+	      <%= f.label :商品説明 %>
+	      <%= f.text_area :detail, class: "detail" %>
+	    </div>
+
+
+	    <div class="field">
+	      <%= f.label :税込価格 %>
+	      <%= f.text_field :non_taxed_price, class: "non_taxed_price" %>円
+	    </div>
+
+	    <div class="field">
+	      <%= f.label :販売ステータス %>
+	      <%= f.serect_status :is_valid %>
+	    </div>
+
+	    <div class="action">
+	      <%= f.submit "新規登録" %>
+
+	    <% end %>
+	</div>
+  </div>
+</div>
+
+
+
+
+
