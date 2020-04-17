@@ -1,2 +1,2 @@
 <h1><strong>管理者画面</strong></h1>
-<h2>本日の注文件数　　<u>８件</u></h2>
+<h2>本日の注文件数　　<u><%= link_to Order.count, admins_orders_path %></u>件</h2>
