@@ -1,14 +1,33 @@
+<header></header>
 <div class="container">
   <div class="row">
 	<div class="col-xs-3">
-	  <thead><th>ジャンル検索</th></thead><br>
-	  <tbody>
-	  	<tb>ケーキ</tb><br>
-	  	<tb>焼き菓子</tb><br>
-	  	<tb>プリン</tb><br>
-	  	<tb>キャンディ</tb><br>
-	  </tbody>
+	  <table border="1">
+		<tr>
+		  <th>
+		  <h2>ジャンル検索</h2>
+		  </th>
+		</tr>
+	  	<tr>
+
+<!-- 	  	実際の繰り返し
+	  	  <td>
+	  	  	<%= @genre.each do |genre| %>
+	  	  	  <h3><%=link_to genre.name, items_index %></h3><br>
+	  	  	<% end %>
+	  	  </td> -->
+
+<!-- 	  	練習 -->
+		  <td>
+		  	<h3>パンだ</h3><br>
+		  	<h3>パンだ</h3><br>
+		  	<h3>パンだ</h3><br>
+		  </td>
+
+	  	</tr>
+	  </table>
 	</div>
+
 
 	<div class="col-xs-9">
 	  <h1><strong>オススメ商品</strong></h1>
@@ -16,3 +35,4 @@
 	<p align="right">もっと見る</p>
   </div>
 </div>
+<footer></footer>
