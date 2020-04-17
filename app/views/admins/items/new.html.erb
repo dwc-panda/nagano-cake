@@ -3,7 +3,7 @@
     <div class="col">
 	  <h1>商品新規登録画面</h1>
 
-	  <%= form_for(@item) do |f| %>
+	  <%= form_for [:admins, @item] do |f| %>
 
 	    <div class="field">
 	      <%= f.label :image %>
@@ -12,27 +12,33 @@
 
 	    <div class="field">
 	      <%= f.label :商品名 %>
-	      <%= f.text_field :name, class: "name" %>
+	      <%= f.text_field :name %>
 	    </div>
 
 	    <div class="field">
 	      <%= f.label :商品説明 %>
-	      <%= f.text_area :detail, class: "detail" %>
+	      <%= f.text_area :detail %>
+	    </div>
+
+	    <div class="field">
+	      <%= f.label :ジャンル %>
+	      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
 	    </div>
 
 
 	    <div class="field">
 	      <%= f.label :税込価格 %>
-	      <%= f.text_field :non_taxed_price, class: "non_taxed_price" %>円
+	      <%= f.text_field :non_taxed_price %> 円
 	    </div>
 
 	    <div class="field">
 	      <%= f.label :販売ステータス %>
-	      <%= f.select :is_valid, [['選択してください'],['販売中',true],['売切れ',false]] %>
+	      <%= f.select :is_valid, [["販売中",true],["売切れ",false]] %>
 	    </div>
 
 	    <div class="action">
 	      <%= f.submit "新規登録" %>
+	    </div>
 
 	   <% end %>
 	</div>
