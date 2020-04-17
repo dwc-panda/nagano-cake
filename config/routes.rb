@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
-
-
   namespace :admins do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admins do
+    root to: 'homes#top'
   	devise_for :users, controllers: {
       sessions: 'admins/users/sessions',
       registrations: 'admins/users/registrations',
@@ -16,10 +11,10 @@ Rails.application.routes.draw do
   	resources :orders, only: [:index, :show, :update]
   	resources :order_details, only: [:update]
   	resources :end_users, only: [:index, :show, :edit, :update]
-  	# root to: 'homes#top'
   end
 
   scope module: :customers do
+    root to: 'homes#top'
   	devise_for :end_users, controllers: {
       sessions: 'customers/end_users/sessions',
       registrations: 'customers/end_users/registrations',
@@ -33,7 +28,6 @@ Rails.application.routes.draw do
   	resources :orders, only: [:index, :new, :create, :show]
   	post 'orders/confirm' => 'orders#confirm', as: :confirm
   	get 'orders/thanks' => 'orders#thanks', as: :thanks
-  	# root to: 'homes#top'
   	get 'homes/about' => 'homes#about', as: :about
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
