@@ -1,0 +1,19 @@
+<div class="container">
+	<div class ="row">
+		<div class= "col">
+
+
+			<h1>商品一覧</h1>
+			<%= @items.count %>
+			<% @items.each do |item| %>
+
+			<%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "home-baked-cake.jpg") %>
+			<%= link_to item.name, item_path(item) %>
+			<%= item.non_taxed_price %>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+
