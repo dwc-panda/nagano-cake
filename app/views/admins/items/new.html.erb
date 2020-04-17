@@ -28,13 +28,13 @@
 
 	    <div class="field">
 	      <%= f.label :販売ステータス %>
-	      <%= f.serect_status :is_valid %>
+	      <%= f.select :is_valid, [['選択してください'],['販売中',true],['売切れ',false]] %>
 	    </div>
 
 	    <div class="action">
 	      <%= f.submit "新規登録" %>
 
-	    <% end %>
+	   <% end %>
 	</div>
   </div>
 </div>
