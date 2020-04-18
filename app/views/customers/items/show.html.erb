@@ -1,21 +1,23 @@
 <div class="container">
-	<div class="row">
-		<div class="col">
+  <div class="row">
+	<div class="col">
 			<h2>商品詳細画面</h2>
-
-			<%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "home-baked-cake.jpg") %>
-			<%= @item.name %>
-			<%= @item.detail %>
-
-			<%= link_to "カートに入れる", cart_items_path %>
-			<%= form_for @cart_item do |f| %>
-
-			<%= f.label :quantity %>
-			<%= f.text_field :quantity %>
-			<%= f.submit class: "btn btn-primary col-xs-12" ,"カートに入れる" %>
-
-			<% end %>
-
-		</div>
 	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-xs-4">
+			<%= attachment_image_tag(@item, :image, size: "200x200") %>
+	</div>
+	<div class="col-xs-7">
+			<%= @item.name %><br>
+			<%= @item.detail %><br>
+			<%= @item.non_taxed_price %>
+
+
+
+			<%= link_to "カートに入れる", cart_items_path(item_id: @item.id) %>
+
+	</div>
+  </div>
 </div>
