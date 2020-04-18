@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admins do
     root to: 'homes#top'
   	devise_for :users, controllers: {
