@@ -3,7 +3,25 @@
   	<div class="col">
 	  <h1>商品詳細画面</h1>
 
-	    <div class="field">
+	</div>
+  </div>
+
+  <div class="row">
+  	<div class="col-xs-4">
+	  <%= attachment_image_tag(@item, :image, size: "200x200", fallback: "home-baked-cake.jpg") %>
+	</div>
+
+	<div class="col-xs-7">
+	    商品名	<%= @item.name %><br>
+	    商品説明 <%= @item.detail %><br>
+	    ジャンル <%= @item.genre_id %><br>
+	    税込価格(税抜価格) (<%= @item.non_taxed_price %>)<br>
+	    販売ステータス <%= @item.is_valid %>
+	    <%= link_to "編集する", edit_admins_item_path(@item), class: "pull-right" %>
+
+    </div>
+  </div>
+</div>
 
 
 
