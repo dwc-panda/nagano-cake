@@ -1,7 +1,16 @@
-<header></header>
+<html>
+<head>
+  <meta charset="utf-8">
+	<title>ようこそNaganoCakeへ！</title>
+    <style type="text/css">
+      <link rel="stylesheet" href="top.css.erb">
+    </style>
+</head>
+
+<body>
 <div class="container">
   <div class="row">
-	<div class="col-xs-3">
+	<div class="col-md-3">
 	  <table border="1">
 		<tr>
 		  <th>
@@ -9,38 +18,42 @@
 		  </th>
 		</tr>
 	  	<tr>
-
-<!-- 	  	実際の繰り返し
 	  	  <td>
 	  	  	<%= @genre.each do |genre| %>
-	  	  	  <h3><%=link_to genre.name, items_index %></h3><br>
+	  	  	  <h3><%=link_to genre.name, items_path %></h3><br>
 	  	  	<% end %>
-	  	  </td> -->
-
-<!-- 	  	練習 -->
-		  <td>
-		  	<h3>パンだ</h3><br>
-		  	<h3>パンだ</h3><br>
-		  	<h3>パンだ</h3><br>
-		  </td>
-
+	  	  </td>
 	  	</tr>
 	  </table>
 	</div>
 
 
-	<div class="col-xs-9">
-	  <div background-image = "asset/home-baked-cake">
-	  	<h4>
-	  	  ようこそNagano Cakeへ！<br>
+	<div class="col-md-9">
+	  <div class="bgimg">
+	  	<p>
+	  	  ようこそNaganoCakeへ！<br>
 	  	  このサイトは、ケーキ販売のECサイトになります。<br>
 	  	  会員でない方も商品の閲覧はできますが、<br>
 	  	  購入には会員登録が必要になります。<br>
-	  	</h4>
+	  	</p>
 	  </div>
 	  <h1><strong>オススメ商品</strong></h1>
+
+	  <table>
+	  	<%= @genre.first(4).each do |genre| %>
+	  	<tr>
+	  	  <td><%= link_to image_tag(genre.item.attachment_image), item_path %></td>
+	  	</tr>
+	  	<tr>
+	  	  <td><%= genre.item.name %></td>
+	  	</tr>
+	  	<tr>
+	  	  <td><%= genre.item.price %></td>
+	  	</tr>
+	  </table>
 	</div>
-	<p align="right">もっと見る</p>
+	<p align="right"><%= link_to "もっと見る", items_path %></p>
   </div>
 </div>
-<footer></footer>
+</body>
+</html>
