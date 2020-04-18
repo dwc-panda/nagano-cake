@@ -7,4 +7,12 @@ class EndUser < ApplicationRecord
   has_many :deliveries, dependent: :destroy
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :first_kana_name, presence: true, format: { with: /\A[ぁ-んァ-ヶー－]+\z/ } #全角カタカナ
+  validates :last_kana_name, presence: true, format: { with: /\A[ぁ-んァ-ヶー－]+\z/ }
+  validates :postcode, presence: true, format: { with: /\A[0-9]+\z/ } #半角数字
+  validates :address, presence: true
+  validates :phone_number, presence: true, format: { with: /\A[0-9]+\z/ }
 end
