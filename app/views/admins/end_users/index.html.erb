@@ -1,0 +1,27 @@
+<div class="container">
+	<div class ="row">
+		<div class= "col">
+			<h4>会員一覧画面</h4>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>会員ID</th>
+						<th>氏名</th>
+						<th>メールアドレス</th>
+						<th>ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @end_users.each do |end_user| %>
+					<tr>
+						<td><%= end_user.id %></td>
+						<td><%= end_user.name %>td>
+							<td><%= end_user.email %></td>
+							<td><%= end_user.is_deleted %></td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>

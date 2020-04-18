@@ -2,7 +2,7 @@ class Customers::CartItemsController < ApplicationController
 
 	def index
        @cart_items = CartItem.all
-       @items = @cart_item.items
+       @items = @cart_item.item
        @price_with_tax = cart_item.item.non_tax_price.to_i * 1.1
        @subtotal = @price_with_tax * quantity
 	end
