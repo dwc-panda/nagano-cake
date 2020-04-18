@@ -1,45 +1,49 @@
-<h1>マイページ</h1>
+<div class="container">
+	<div class="row">
+		<h1>マイページ</h1>
 
-<h2>登録情報</h2>
+		<h2>登録情報</h2>
 
-<h2><%= link_to '編集する', edit_end_user_path(@end_user) %></h2>
+		<h2><%= link_to '編集する', edit_end_user_path(@end_user) %></h2>
 
-<h2><%= link_to 'パスワードを変更する', edit_end_user_password_path(@end_user) %></h2>
+		<h2><%= link_to 'パスワードを変更する', edit_end_user_password_path(@end_user) %></h2>
 
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th colspan="2"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>氏名</td>
-			<td><%= @full_name %></td>
-		</tr>
-		<tr>
-			<td>カナ</td>
-			<td><%= @full_kana_name %></td>
-		</tr>
-		<tr>
-			<td>郵便番号</td>
-			<td><%= @end_user.postcode %></td>
-		</tr>
-		<tr>
-			<td>住所</td>
-			<td><%= @end_user.address %></td>
-		</tr>
-		<tr>
-			<td>電話番号</td>
-			<td><%= @end_user.phone_number %></td>
-		</tr>
-		<tr>
-			<td>メールアドレス</td>
-			<td><%= @end_user.email %></td>
-		</tr>
-	</tbody>
-</table>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th colspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>氏名</td>
+					<td><%= @full_name %></td>
+				</tr>
+				<tr>
+					<td>カナ</td>
+					<td><%= @full_kana_name %></td>
+				</tr>
+				<tr>
+					<td>郵便番号</td>
+					<td><%= @end_user.postcode %></td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td><%= @end_user.address %></td>
+				</tr>
+				<tr>
+					<td>電話番号</td>
+					<td><%= @end_user.phone_number %></td>
+				</tr>
+				<tr>
+					<td>メールアドレス</td>
+					<td><%= @end_user.email %></td>
+				</tr>
+			</tbody>
+		</table>
 
-<h2>配送先</h2><%= link_to '一覧を見る', deliveries_path %>
+		<h2>配送先</h2><%= link_to '一覧を見る', deliveries_path %>
 
-<h2>注文履歴</h2><%= link_to '一覧を見る', orders_path %>
+		<h2>注文履歴</h2><%= link_to '一覧を見る', orders_path %>
+	</div>
+</div>
