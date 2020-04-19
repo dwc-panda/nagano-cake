@@ -10,13 +10,14 @@ class Customers::OrdersController < ApplicationController
   def confirm #注文確認画面
 
   end
-
-  def create #注文情報登録
-    order = Order.new(order_params)
+  
+  def create
   end
 
-  def show #注文履歴詳細
-    @order = Oder.find(params[:id])
+  def show
+    @order = current_order.find(params[:id])
+    @orders = Order_detail.all
+    @price_sum = current_order.postage + current_order.total_price
   end
 
   private

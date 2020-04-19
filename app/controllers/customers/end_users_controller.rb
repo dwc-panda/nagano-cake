@@ -4,8 +4,6 @@ class Customers::EndUsersController < ApplicationController
 
   def show
   	@end_user = current_end_user
-  	@full_name = @end_user.first_name + @end_user.last_name
-  	@full_kana_name = @end_user.first_kana_name + @end_user.last_kana_name
   end
 
   def edit

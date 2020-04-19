@@ -18,6 +18,7 @@ class Customers::CartItemsController < ApplicationController
 		end
 	end
 
+
 #destroyメソッドはwhereと併せて使うらしい
 	def empty
 		cart_item = CartItem.where(params[:id])
