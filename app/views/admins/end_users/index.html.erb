@@ -6,7 +6,7 @@
 				<thead>
 					<tr>
 						<th>会員ID</th>
-						<th><%= link_to "氏名", admins_end_user_path(@end_users) %></th>
+						<th>氏名</th>
 						<th></th>
 						<th>メールアドレス</th>
 						<th>ステータス</th>
@@ -16,9 +16,11 @@
 					<% @end_users.each do |end_user| %>
 					<tr>
 						<td><%= end_user.id %></td>
-						<%= link_to end_user_path(@end_users) do %>
-						<td><%= end_user.first_name %><%= end_user.last_name %><td>
-						<% end %>
+
+						<td><%= link_to end_user.first_name,admins_end_user_path(end_user) %>
+							<%= link_to end_user.last_name,admins_end_user_path(end_user) %>
+						</td>
+
 						<td><%= end_user.email %></td>
 						<td><%= end_user.is_deleted %></td>
 					</tr>
