@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   	delete 'cart_items/empty' => 'cart_items#empty', as: :empty
   	resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   	resources :orders, only: [:index, :new, :create, :show]
-  	post 'orders/confirm' => 'orders#confirm', as: :confirm
+  	post 'orders/confirm' => 'orders#confirm', as: :order_confirm
   	get 'orders/thanks' => 'orders#thanks', as: :thanks
   	get 'homes/about' => 'homes#about', as: :about
   end
