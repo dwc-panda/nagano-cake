@@ -32,8 +32,8 @@
 			<td><%= delivery.address %></td>
 			<td><%= delivery.direction %></td>
 			<td>
-				<%= link_to '編集する', edit_delivery_path %>
-				<%= link_to '削除する', delivery_path, method: :delete %>
+				<%= link_to '編集する', edit_delivery_path(delivery) %>
+				<%= link_to '削除する', delivery_path(delivery), method: :delete %>
 			</td>
 		</tr>
 		<% end %>
