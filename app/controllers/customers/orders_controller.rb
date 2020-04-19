@@ -1,16 +1,16 @@
 class Customers::OrdersController < ApplicationController
-  def index
+  def index #注文履歴一覧
   	@orders = Order.all
   end
 
-  def new
+  def new #注文登録画面
   	@order = Order.new
   end
 
-  def confirm
-  	@order = Order.new(order_params)
-  end
+  def confirm #注文確認画面
 
+  end
+  
   def create
   end
 
@@ -20,6 +20,9 @@ class Customers::OrdersController < ApplicationController
     @price_sum = current_order.postage + current_order.total_price
   end
 
-  def thanks
+  private
+  def order_params
+    params.require(:order).permit(:total_price, :postcode, :address, :direction, :payment_type)
   end
+
 end
