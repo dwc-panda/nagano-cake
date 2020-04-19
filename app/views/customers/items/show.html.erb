@@ -12,11 +12,13 @@
 	<div class="col-xs-7">
 			<%= @item.name %><br>
 			<%= @item.detail %><br>
-			<%= @item.non_taxed_price %>
+			<%= (@item.non_taxed_price*1.1).floor.to_s(:delimited) %>
 
-
-
-			<%= button_to "カートに入れる", cart_items_path %>
+		  <%= form_for(@cart_item) do |f| %>
+         	<%= f.hidden_field :item_id, value: @item.id %>
+         	<%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+         	<%= f.submit "カートに入れる" %>
+          <% end %>
 
 	</div>
   </div>

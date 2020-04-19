@@ -22,9 +22,10 @@ Rails.application.routes.draw do
       passwords: 'customers/end_users/passwords'
     }
   	resources :end_users
+    get 'end_users/:id/confirm' => 'end_users#confirm', as: :end_user_confirm
   	resources :items, only: [:index, :show]
+    delete 'cart_items/empty' => 'cart_items#empty', as: :empty
   	resources :cart_items, only: [:index, :create, :destroy, :update]
-  	delete 'cart_items/empty' => 'cart_items#empty', as: :empty
   	resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   	resources :orders, only: [:index, :new, :create, :show]
   	post 'orders/confirm' => 'orders#confirm', as: :confirm
