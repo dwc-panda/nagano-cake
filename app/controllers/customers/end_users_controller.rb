@@ -18,6 +18,13 @@ class Customers::EndUsersController < ApplicationController
   	redirect_to end_user_path(end_user)
   end
 
+  def confirm
+    @end_user = current_end_user
+    # @end_user.update = (is_deleted: true)
+    # @end_user.save
+    # respond_to
+  end
+
   private
   def end_user_params
   	params.require(:end_user).permit(:first_name, :last_name, :first_kana_name, :last_kana_name, :postcode, :address, :phone_number)
