@@ -2,31 +2,36 @@
 	<div class="row">
 		<div class="col">
 			<h1>ショッピングカート（カート内商品一覧画面）</h1>
-			<%= link_to "カートを空にする", empty_path, class:"btn btn-danger",metohd: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
+			<%= link_to "カートを空にする", empty_path, class:"btn btn-danger pull-right",method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
 
-			<table>
+			<table class="table">
 				<thead>
 					<tr>
 						<th>商品名</th>
 						<th>単価（税込み）</th>
 						<th>数量</th>
 						<th>小計</th>
-						<th colspan= "" ></th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
+					<% @sum = 0 %>
+					<% @cart_items.each do |cart_item| %>
 					<tr>
-						<% @cart_items.each do |cart_item| %>
-						<td><%= attachment_image_tag(cart_item.item, :image, :fill, 100, 100, fallback: "home-baked-cake.jpg") %>
+						<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
 							<%= cart_item.item.name %></td>
-							<td><%= cart_item.price_with_tax %></td>
-							<td><%= cart_item.quantity %></td>
-							<td><%= cart_item.subtotal %></td>
-							<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", metohd: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
-							<% end %>
-						</tr>
-					</tbody>
+						<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
+						<td><%= cart_item.quantity %></td>
+						<td><%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
+						<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
+					</tr>
+					<% @sum += cart_item.item.non_taxed_price*cart_item.quantity*1.1%>
+					<% end %>
+				</tbody>
 				</table>
+
+				<h4>合計金額</h4>
+				<%= @sum.floor.to_s(:delimited) %>
 
 			</div>
 		</div>
