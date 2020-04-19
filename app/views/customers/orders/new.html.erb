@@ -1,35 +1,23 @@
 <div class="container">
   <div class="row">
-  	<div class="row">
-	  <h1>注文情報入力</h1>
-	  <%= form_for(@order) do |f| %>
+  	<h2>注文情報入力</h2>
+  		<%= form_with model: @order, url: confirm_path do |f| %>
 
-	    <h4>支払方法</h4>
-		  <%= f.radio_button :payment_type, :クレジットカード %>
-		  <%= f.label :payment_type, "クレジットカード" %><br>
-		  <%= f.radio_button :payment_type, :銀行振込 %>
-		  <%= f.label :payment_type, "銀行振込" %>
+  			<h4>お支払い方法</h4>
 
-		<h4>お届け先</h4>
-		  <%= f.radio_button :address, class: "edit-control" %>
-		  <%= f.label :address, "ご自身の住所" %><br>
-		  <%= current_end_user %>
-		  <%= f.radio_button :address, class: "edit-control" %>
-		  <%= f.label :address, "登録住所から選択" %><br>
-		  <%= f.radio_button :address, class: "edit-control" %>
-		  <%= f.label :address, "新しいお届け先" %><br>
-		  <h5>郵便番号(ハイフンなし)</h5>
-		  <%= f.text_field :postcode %>
-		  <h5>住所</h5>
-		  <%= f.text_field :address, :size=>"60" %>
-		  <h5>宛名</h5>
-		  <%= f.text_field :direction %>
+  			<%= f.label :クレジットカード %>
+  			<%= f.radio_button :payment_type, :payment_type[0] %>
 
+  			<%= f.label :銀行振り込み %>
+  			<%= f.radio_button :payment_type, :payment_type[1] %>
 
+  			<h4>お届け先</h4>
 
+  			<%= f.label :ご自身の住所 %>
+  			<%= f.radio_button :address %>
 
-		<% end %>
-	</div>
+  		<% end %>
+
   </div>
 </div>
 
