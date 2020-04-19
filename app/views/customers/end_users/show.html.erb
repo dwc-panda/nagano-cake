@@ -17,11 +17,11 @@
 			<tbody>
 				<tr>
 					<td>氏名</td>
-					<td><%= @full_name %></td>
+					<td><%= @end_user.first_name %> <%= @end_user.last_name %></td>
 				</tr>
 				<tr>
 					<td>カナ</td>
-					<td><%= @full_kana_name %></td>
+					<td><%= @end_user.first_kana_name %> <%= @end_user.last_kana_name %></td>
 				</tr>
 				<tr>
 					<td>郵便番号</td>

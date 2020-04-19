@@ -19,7 +19,7 @@
 		</tr>
 	  	<tr>
 	  	  <td>
-	  	  	<%= @genre.each do |genre| %>
+	  	  	<% @genre.each do |genre| %>
 	  	  	  <h3><%=link_to genre.name, items_path %></h3><br>
 	  	  	<% end %>
 	  	  </td>
@@ -30,29 +30,38 @@
 
 	<div class="col-md-9">
 	  <div class="bgimg">
+	  	<div>
 	  	<p>
 	  	  ようこそNaganoCakeへ！<br>
 	  	  このサイトは、ケーキ販売のECサイトになります。<br>
 	  	  会員でない方も商品の閲覧はできますが、<br>
 	  	  購入には会員登録が必要になります。<br>
 	  	</p>
+	    </div>
 	  </div>
 	  <h1><strong>オススメ商品</strong></h1>
 
 	  <table>
-	  	<%= @genre.first(4).each do |genre| %>
+	  	<div class="row">
+	  	<div class="col-md-3">
+	  	<% @items.each do |item| %>
+	  	<%= link_to items_path do %>
 	  	<tr>
-	  	  <td><%= link_to image_tag(genre.item.attachment_image), item_path %></td>
+	  	  <td><%= attachment_image_tag item, :image %></td>
+	  	</tr>
+	  	<% end %>
+	  	<tr>
+	  	  <td><%= item.name %></td>
 	  	</tr>
 	  	<tr>
-	  	  <td><%= genre.item.name %></td>
+	  	  <td><%= item.non_taxed_price %></td>
 	  	</tr>
-	  	<tr>
-	  	  <td><%= genre.item.price %></td>
-	  	</tr>
+	  	<% end %>
+	    </div>
+		</div>
 	  </table>
-	</div>
 	<p align="right"><%= link_to "もっと見る", items_path %></p>
+	</div>
   </div>
 </div>
 </body>

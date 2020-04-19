@@ -16,8 +16,6 @@ class Customers::CartItemsController < ApplicationController
 		end
 	end
 
-	end
-
 	def destoroy
 		cart_item = CartItem.find(params[:id])
         cart_item.destoroy
@@ -28,14 +26,12 @@ class Customers::CartItemsController < ApplicationController
 		cart_item = CartItem.where(params[:id])
 		cart_item.destroy_all
 		redirect_back(fallback_location: root_path, notice: "successfully delete")
-
 	end
 
 	def update
 		cart_item = CartItem.find(params[:id])
 		cart_item.update
 		redirect_back(fallback_location: root_path)
-
 	end
 
 	private

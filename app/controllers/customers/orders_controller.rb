@@ -12,10 +12,12 @@ class Customers::OrdersController < ApplicationController
   end
 
   def create
-  	
   end
 
   def show
+    @order = current_order.find(params[:id])
+    @orders = Order_detail.all
+    @price_sum = current_order.postage + current_order.total_price
   end
 
   def thanks

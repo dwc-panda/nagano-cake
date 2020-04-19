@@ -1,7 +1,6 @@
 class Customers::HomesController < ApplicationController
 	def top
 	  @genre = Genre.all
-	  @item = Item.find(params[:id])
-
+	  @items = Item.all.shuffle.first(4)
 	end
 end
