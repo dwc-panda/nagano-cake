@@ -1,52 +1,85 @@
 <div class="container">
-	<div class="row">
-		<div class="col">
-			<h1>注文詳細画面</h1>
+	<div class ="row">
+		<div class="col-xs-6">
+			<h2>管理者側注文商品詳細画面</h2>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>購入者</th>
+						<td><%= link_to @order.end_user.first_name + @order.end_user.last_name, admins_end_users_path %></td>
+					</tr>
+					<tr>
+						<th>配送先</th>
+						<td><%= @order.end_user.postcode %></td>
+						<td><%= @order.end_user.address %></td>
+						<td><%= link_to @order.end_user.first_name + @order.end_user.last_name, admins_end_users_path %></td>
+					</tr>
+					<tr>
+						<th>支払方法</th>
+						<td><%= @order.payment_type %></td>
+					</tr>
+					<tr>
+						<th>注文ステータス</th>
+						<td><%= @order.order_status %></td>
+						<%= @order.select :order_status, [["販売中",true],["売切れ",false]] %>
+						<%= link_to "更新", admins_order_path(order), method: :patch, class: "btn btn-primary" %>
 
-			<h4>購入者</h4>
-			<%= @order.end_user.first_name %><%= @order.end_user.last_name %>
-
-			<h4>配送先</h4>
-			<%= @order.address %>
-
-			<h4>支払い方法</h4>
-			<%= @order.payment_type %>
-
-
-	  <table class="table">
-	  	<thead>
-	  	  <tr>
-	  	  	<th>商品名</th>
-	  	  	<th>単価(税込)</th>
-	  	  	<th>数量</th>
-	  	  	<th>小計</th>
-	  	  	<th>製作ステータス</th>
-	  	  </tr>
-	  	</thead>
-	  	<tbody>
-	  	<% @sum = 0 %>
-	  	<% @orders.each do |order| %>
-	  	  <tr>
-	  	  	<td><%= order.order_details.name %></td>
-	  	  	<td><%= (order.order_details.price*1.1).floor.to_s(:delimited) %></td>
-	  	  	<td><%= (order.order_details.price*order_details.ordder.quantity*1.1).floor.to_s(:delimited) %></td>
-	  	  	<td><%= order.order_details.item_status %></td>
-	  	  </tr>
-	  	  <% @sum += order.order_details.price*order_details.ordder.quantity*1.1 %>
-	  	<% end %>
-	  </tbody>
-	</table>
-
-	　<h4>商品合計</h4>
-		<%= @sum.floor.to_s(:delimited) %>
-
-		<h4>送料</h4>
-		<%= @order.postage %>
-
-		<h4>請求合計金額</h4>
-		<%= @sum + @order.postage %>
+						<%= form_for(@order) do |f| %>
+						<%= f.label :注文ステータス %>
+						<%= f.select :order_status, [["入金待ち"],["入金確認"],["制作中"],["発送準備中"],["発送済み"]] %>
+						<%= f.submit "カートに入れる" %>
+						<% end %>
+					</tr>
+				</tbody>
+			</table><table class="table">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価（税込み）</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>制作ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @orders.each do |order| %>
+					<tr>
+						<td>
+							<%= order.item.name %>
+						</td>
+						<td>
+							<%= (order.item.non_taxed_price * 1.1).floor.to_s(:delimited) %>
+						</td>
+						<td>
+							<%= order.order_details.quantity %>
+						</td>
+						<td>
+							<%= order.item.non_taxed_price * 1.1 * order.order_details.quantity  %>
+						</td>
+						<td>
+							<%= order.order_details.item_status %>
+							<%= f.label :制作ステータス %>
+							<%= order.select :item_status, [["販売中",true],["売切れ",false]] %>
+							<%= link_to "更新", admins_order_path(order), method: :patch, class: "btn btn-primary" %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<tbody>
+				<tr>
+					<th>商品合計</th>
+					<td><%= @orders.item.non_taxed_price * 1.1 * @orders.order_details.quantity  %></td>
+				</tr>
+				<tr>
+					<th>送料</th>
+					<td><%= @orders.postage %></td>
+				</tr>
+				<tr>
+					<th>請求金額合計</th>
+					<td><%=@orders.item.non_taxed_price * 1.1 * @orders.order_details.quantity + @orders.postage   %></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
- </div>
 </div>
-
-

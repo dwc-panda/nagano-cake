@@ -18,7 +18,7 @@ class Customers::DeliveriesController < ApplicationController
 
 	def update
 		@delivery = Delivery.find(params[:id])
-		@delivery.update(delivery_paramas)
+		@delivery.update(delivery_params)
 		redirect_to deliveries_path
 	end
 

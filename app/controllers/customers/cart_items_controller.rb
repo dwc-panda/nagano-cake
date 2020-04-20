@@ -1,7 +1,7 @@
 class Customers::CartItemsController < ApplicationController
 
 	def index
-       @cart_items = CartItem.all
+       @cart_items = CartItem.where(end_user_id: current_end_user.id)
        # cart_item = CartItem.find(params[:id])
        # @items = @cart_item.item
        # @price_with_tax = @cart_item.item.non_tax_price.to_i * 1.1
