@@ -18,13 +18,22 @@ class Customers::EndUsersController < ApplicationController
 
   def confirm
     @end_user = current_end_user
-    # @end_user.update = (is_deleted: true)
-    # @end_user.save
-    # respond_to
+  end
+  # 退会するためのアクション
+  def withdrawal
+    end_user = current_end_user
+    if end_user.is_deleted == true
+      end_user.update(is_deleted: false)
+      redirect_to root_path
+    else
+      end_user.is_deleted == false
+      end_user.update(is_deleted: true)
+      redirect_to end_user_path(end_user)
+    end
   end
 
   private
   def end_user_params
-  	params.require(:end_user).permit(:first_name, :last_name, :first_kana_name, :last_kana_name, :postcode, :address, :phone_number)
+  	params.require(:end_user).permit(:is_delete, :first_name, :last_name, :first_kana_name, :last_kana_name, :postcode, :address, :phone_number)
   end
 end

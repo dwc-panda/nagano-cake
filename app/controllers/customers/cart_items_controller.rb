@@ -34,7 +34,7 @@ class Customers::CartItemsController < ApplicationController
 	def update
 		# cart_item = CartItem.find(params[:id])
 		# cart_item.update
-		cart_item.update(quantity: params[:quantity].to_i)
+		cart_item.update(cart_items_params)
 		redirect_back(fallback_location: root_path)
 	end
 
