@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     }
   	resources :end_users
     get 'end_users/:id/confirm' => 'end_users#confirm', as: :end_user_confirm
+    patch 'end_users/:id/withdrawal' => 'end_users#withdrawal', as: :withdrawal
   	resources :items, only: [:index, :show]
     delete 'cart_items/empty' => 'cart_items#empty', as: :empty
   	resources :cart_items, only: [:index, :create, :destroy, :update]

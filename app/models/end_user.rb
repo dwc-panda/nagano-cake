@@ -15,4 +15,8 @@ class EndUser < ApplicationRecord
   validates :postcode, presence: true, format: { with: /\A[0-9]+\z/ } #半角数字
   validates :address, presence: true
   validates :phone_number, presence: true, format: { with: /\A[0-9]+\z/ }
+
+  def active_for_authentication?
+    super && (self.is_deleted == false)
+  end
 end
