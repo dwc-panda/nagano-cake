@@ -1,0 +1,52 @@
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1>注文詳細画面</h1>
+
+			<h4>購入者</h4>
+			<%= @order.end_user.first_name %><%= @order.end_user.last_name %>
+
+			<h4>配送先</h4>
+			<%= @order.address %>
+
+			<h4>支払い方法</h4>
+			<%= @order.payment_type %>
+
+
+	  <table class="table">
+	  	<thead>
+	  	  <tr>
+	  	  	<th>商品名</th>
+	  	  	<th>単価(税込)</th>
+	  	  	<th>数量</th>
+	  	  	<th>小計</th>
+	  	  	<th>製作ステータス</th>
+	  	  </tr>
+	  	</thead>
+	  	<tbody>
+	  	<% @sum = 0 %>
+	  	<% @orders.each do |order| %>
+	  	  <tr>
+	  	  	<td><%= order.order_details.name %></td>
+	  	  	<td><%= (order.order_details.price*1.1).floor.to_s(:delimited) %></td>
+	  	  	<td><%= (order.order_details.price*order_details.ordder.quantity*1.1).floor.to_s(:delimited) %></td>
+	  	  	<td><%= order.order_details.item_status %></td>
+	  	  </tr>
+	  	  <% @sum += order.order_details.price*order_details.ordder.quantity*1.1 %>
+	  	<% end %>
+	  </tbody>
+	</table>
+
+	　<h4>商品合計</h4>
+		<%= @sum.floor.to_s(:delimited) %>
+
+		<h4>送料</h4>
+		<%= @order.postage %>
+
+		<h4>請求合計金額</h4>
+		<%= @sum + @order.postage %>
+	</div>
+ </div>
+</div>
+
+
