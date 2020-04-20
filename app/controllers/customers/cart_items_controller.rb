@@ -14,10 +14,9 @@ class Customers::CartItemsController < ApplicationController
 		# cart_item.item_id = item.id
 		# cart_item.quantity += params[:quantity].to_i
 		if cart_item.save
-		   redirect_back(fallback_location: root_path)
+		   redirect_to cart_items_path
 		end
 	end
-
 
 #destroyメソッドはwhereと併せて使うらしい
 	def empty
