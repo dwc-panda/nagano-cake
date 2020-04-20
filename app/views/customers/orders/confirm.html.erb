@@ -1,5 +1,25 @@
 <div class="container">
 	<div class="row">
 		<h2>注文情報確認</h2>
+
+		<%= form_with model: @order, url: orders_path, local: true do |f| %>
+
+			<%= f.label :お支払い方法 %>
+			<%= @payment_type %>
+			<%= f.hidden_field :payment_type, :value => @payment_type %>
+
+			<%= f.label :お届け先 %>
+			<%= @postcode %><%= @address %>
+			<%= @direction %>
+			<%= f.hidden_field :postcode, :value => @postcode %>
+			<%= f.hidden_field :address, :value => @address %>
+			<%= f.hidden_field :direction, :value => @direction %>
+
+			<%= f.label :請求金額 %>
+			<%= f.hidden_field :total_price, :value => @total_price %>
+			<%= @total_price %>
+
+			<%= f.submit '購入' %>
+		<% end %>
 	</div>
 </div>
