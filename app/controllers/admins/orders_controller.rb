@@ -1,5 +1,4 @@
 class Admins::OrdersController < ApplicationController
-
   def index
     @orders = Order.all
   end
@@ -20,6 +19,4 @@ class Admins::OrdersController < ApplicationController
     def order_params
       params.require(:order).parmit(:order_status)
     end
-
-
 end
