@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root to: 'homes#top'
-    get 'homes/top' => 'homes#top'
     devise_for :users, controllers: {
       sessions: 'admins/users/sessions',
       registrations: 'admins/users/registrations',
