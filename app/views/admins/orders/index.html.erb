@@ -20,9 +20,11 @@
 						<td>
 							<%= order.end_user.first_name + order.end_user.last_name %>
 						</td>
-						<td>
-							<%= order.order_details.quantity %>
-						</td>
+							<% @sum = 0 %>
+							<% order.order_details.each do |order_detail| %>
+							<% @sum += order_detail.quantity %>
+							<% end %>
+						<td><%= @sum %></td>
 						<td>
 							<%= order.order_status %>
 						</td>

@@ -11,7 +11,8 @@ class Customers::CartItemsController < ApplicationController
 	def create
 		cart_item =CartItem.new(cart_items_params)
 		cart_item.end_user_id = current_end_user.id
-		# cart_item.item_id = item.id
+		# current_end_user.cart_items = CartItem.where(item_id: item.id)
+			# cart_item.item_id = item.id
 		# cart_item.quantity += params[:quantity].to_i
 		if cart_item.save
 		   redirect_to cart_items_path
