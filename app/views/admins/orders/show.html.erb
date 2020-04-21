@@ -58,7 +58,7 @@
 						</td>
 						<td>
 							<%= form_with model: order_detail, url: admins_order_detail_path,method: :patch, local: true do |f| %>
-						<%= f.select :item_status,[["着手不可",0],["制作待ち",1],["制作中",2],["制作完了",3]]%>
+						<%= f.select :item_status,["着手不可","制作待ち","制作中","制作完了"],selected: order_detail.item_status%>
 
 						<%= f.submit "更新" %>
 						<% end %>
