@@ -3,6 +3,7 @@ class Admins::EndUsersController < ApplicationController
 def index
   # @end_user = EndUser.find(params[:id])
   @end_users = EndUser.all
+  is_deleted = true
 end
 
 def show
@@ -11,7 +12,6 @@ end
 
 def edit
   @end_user = EndUser.find(params[:id])
-
 end
 
 def update
