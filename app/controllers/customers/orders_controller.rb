@@ -1,6 +1,6 @@
 class Customers::OrdersController < ApplicationController
   def index #注文履歴一覧
-  	@orders = Order.where(end_user_id: current_end_user.id)
+  	@orders = Order.where(end_user_id: current_end_user.id) #ログイン中のユーザーの注文履歴を表示
   end
 
   def new #注文登録画面
@@ -34,11 +34,11 @@ class Customers::OrdersController < ApplicationController
   def create
     order = Order.new(order_params)
     order.end_user_id = current_end_user.id
-    order.order_status = 0
-    order.postage = 800
-    order.tax = 1.1
+    order.order_status = 0 #order_statusをデフォルトで0に設定
+    order.postage = 800 #送料を800円に設定
+    order.tax = 1.1 #消費税を10%に設定
     order.save #注文確定
-    current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成
+    current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成。1カートごとに注文詳細履歴を作る。
       order_detail = OrderDetail.new
       order_detail.item_id = cart_item.item.id
       order_detail.price = cart_item.item.non_taxed_price
@@ -54,8 +54,6 @@ class Customers::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     # @order.order_details = OrderDetail.where(order_id: @order.id)
-    # @price_sum = order_detail.price * order_detail.quantity
-
   end
 
   private
