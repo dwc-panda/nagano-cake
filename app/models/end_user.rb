@@ -19,7 +19,4 @@ class EndUser < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-  def already_item?(item)
-    cart_items.where(item_id: item.id).exists?#カート機能これであっているのか？
-  end
 end

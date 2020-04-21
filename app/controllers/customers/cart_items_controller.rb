@@ -11,14 +11,13 @@ class Customers::CartItemsController < ApplicationController
 	def create
 		cart_item =CartItem.new(cart_items_params)
 		cart_item.end_user_id = current_end_user.id
-		# current_end_user.cart_items = CartItem.where(item_id: item.id)
-			# cart_item.item_id = item.id
-		# cart_item.quantity += params[:quantity].to_i
-		if cart_item.save
+		if current_end_user.cart_items.where(item_id: cart_item.item_id).exists?#cart_item.item_idパラメータで渡しているcart_itemに紐づくitem_id
+			 redirect_back(fallback_location: root_path)
+		else
+			 cart_item.save
 		   redirect_to cart_items_path
 		end
 	end
-
 #destroyメソッドはwhereと併せて使うらしい
 	def empty
 		cart_item = CartItem.where(params[:id])
@@ -33,7 +32,7 @@ class Customers::CartItemsController < ApplicationController
 	end
 
 	def update
-		# cart_item = CartItem.find(params[:id])
+		cart_item = CartItem.find(params[:id])
 		# cart_item.update
 		cart_item.update(cart_items_params)
 		redirect_back(fallback_location: root_path)
