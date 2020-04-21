@@ -7,7 +7,7 @@
   			<h4>お支払い方法</h4>
 
   			<%= f.label :クレジットカード %>
-  			<%= f.radio_button :payment_type, :クレジットカード %>
+  			<%= f.radio_button :payment_type, :クレジットカード, :checked => true %>
 
   			<%= f.label :銀行振り込み %>
   			<%= f.radio_button :payment_type, :銀行振り込み %>
@@ -15,7 +15,7 @@
   			<h4>お届け先</h4>
 
   			<%= f.label :ご自身の住所 %>
-  			<%= f.radio_button :select_address, 1 %><br>
+  			<%= f.radio_button :select_address, 1, :checked => true %><br>
 
   			<%= f.label :登録済み住所から選択 %>
   			<%= f.radio_button :select_address, 2 %>
