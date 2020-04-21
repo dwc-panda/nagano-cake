@@ -37,6 +37,9 @@ class Customers::OrdersController < ApplicationController
     order.order_status = 0 #order_statusをデフォルトで0に設定
     order.postage = 800 #送料を800円に設定
     order.tax = 1.1 #消費税を10%に設定
+    delivery = Delivery.new
+    delivery.end_user_id = current_end_user.id
+    delivery.save
     order.save #注文確定
     current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成。1カートごとに注文詳細履歴を作る。
       order_detail = OrderDetail.new
