@@ -12,15 +12,18 @@ class Customers::OrdersController < ApplicationController
       @address = current_end_user.address
       @postcode = current_end_user.postcode
       @direction = current_end_user.first_name
+      @a = 0
     elsif order_params[:select_address] == "2" #お問合せで登録済み住所から選択を選んだ場合
       delivery = Delivery.find(order_params[:address_id])
       @address = delivery.address
       @postcode = delivery.postcode
       @direction = delivery.direction
+      @a = 0
     else #お届け先で新しいお届け先を選んだ場合
       @address = order_params[:address]
       @postcode = order_params[:postcode]
       @direction = order_params[:direction]
+      @a = 1
     end
     @cart_items = current_end_user.cart_items
     @payment_type = order_params[:payment_type]
@@ -37,9 +40,12 @@ class Customers::OrdersController < ApplicationController
     order.order_status = 0 #order_statusをデフォルトで0に設定
     order.postage = 800 #送料を800円に設定
     order.tax = 1.1 #消費税を10%に設定
-    delivery = Delivery.new
-    delivery.end_user_id = current_end_user.id
-    delivery.save
+    if a_params[:a] == "1"
+      # delivery = Delivery.new(order_deli_params)
+      # delivery.end_user_id = current_end_user.id
+      delivery = current_end_user.deliveries.new(order_deli_params)
+      delivery.save
+    end
     order.save #注文確定
     current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成。1カートごとに注文詳細履歴を作る。
       order_detail = OrderDetail.new
@@ -62,6 +68,14 @@ class Customers::OrdersController < ApplicationController
   private
   def order_params
     params.require(:order).permit(:total_price, :postcode, :address, :direction, :payment_type, :select_address, :address_id)
+  end
+
+  def a_params
+     params.require(:order).permit(:a)
+  end
+
+  def order_deli_params
+    params.require(:order).permit(:address, :postcode, :direction)
   end
 
 end
