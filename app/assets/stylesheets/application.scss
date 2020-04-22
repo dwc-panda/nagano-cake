@@ -21,19 +21,22 @@ header {
 	height: 50px;
 }
 
-.topbox{
+.topbox {
   display: inline-flex;
   margin: 5px;
   padding: 10px;
   background-color: #ffffff;
 }
 
+.sign-title {
+	margin: 30px 0px 50px 0px;
+}
 
-.field {
+.sign-field {
 	text-align: left;
 	padding-bottom: 10px;
 }
 
 .name {
-	text-align: right;
+	padding-left: 40px;
 }

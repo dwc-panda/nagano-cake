@@ -39,7 +39,6 @@
 				</thead>
 				<tbody>
 					<% @sum = 0 %>
-					<% @orders.each do |order| %>
 					<% @order.order_details.each do |order_detail| %>
 					<tr>
 
@@ -68,7 +67,6 @@
 					</tr>
 					<% @sum += order_detail.item.non_taxed_price * 1.1 * order_detail.quantity  %>
 
-					<% end %>
 					<% end %>
 				</tbody>
 			</table>
