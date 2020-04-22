@@ -10,36 +10,36 @@
 		</thead>
 		<tbody>
 				<tr>
-					<td>名前</td>
+					<td><%= f.label :name, "名前" %></td>
 					<td>(姓)<%= f.text_field :first_name %></td>
 					<td>(名)<%= f.text_field :last_name %></td>
 				</tr>
 				<tr>
-					<td>フリガナ</td>
+					<td><%= f.label :name, "フリガナ" %></td>
 					<td>(セイ)<%= f.text_field :first_kana_name %></td>
 					<td>(メイ)<%= f.text_field :last_kana_name %></td>
 				</tr>
 				<tr>
-					<td>メールアドレス</td>
+					<td><%= f.label :email, "メールアドレス" %></td>
 					<td><%= f.email_field :email %></td>
 				</tr>
 				<tr>
-					<td>郵便番号(ハイフンなし)</td>
+					<td><%= f.label :postcode, "郵便番号(ハイフンなし)" %></td>
 					<td><%= f.text_field :postcode %></td>
 				</tr>
 				<tr>
-					<td>住所</td>
+					<td><%= f.label :address, "住所" %></td>
 					<td><%= f.text_field :address %></td>
 				</tr>
 				<tr>
-					<td>電話番号(ハイフンなし)</td>
+					<td><%= f.label :phone_number, "電話番号(ハイフンなし)" %></td>
 					<td><%= f.text_field :phone_number %></td>
 				</tr>
 				<tr>
-					<td><%= f.submit '編集内容を保存する' %></td>
+					<td><%= f.submit "編集内容を保存する" %></td>
 				</tr>
 		</tbody>
 	</table>
 <% end %>
 
-<%= link_to "退会", end_user_confirm_path(@end_user),class: "btn btn-danger" %>
+<%= link_to "退会する", end_user_confirm_path(@end_user),class: "btn btn-danger" %>
