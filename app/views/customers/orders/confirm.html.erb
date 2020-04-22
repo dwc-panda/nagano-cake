@@ -3,6 +3,7 @@
 		<h2>注文情報確認</h2>
 
 		<%= form_with model: @order, url: orders_path, local: true do |f| %>
+		<%= render 'layouts/error_messages', model: f.object %>
 
 			<%= f.label :お支払い方法 %>
 			<%= @payment_type %>
