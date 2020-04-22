@@ -18,14 +18,18 @@
 					<% @sum = 0 %>
 					<% @cart_items.each do |cart_item| %>
 					  <%= form_for(cart_item) do |f| %>
+					  <%= render 'layouts/error_messages', model: f.object %>
 						<tr>
 							<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
-								<%= cart_item.item.name %></td>
+								<%= cart_item.item.name %>
+							</td>
 							<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
 							<td><%= f.select :quantity, ((1..10).to_a) %>
-								<%= f.submit "変更" %></td>
+								<%= f.submit "変更" %>
+							</td>
 							<td><%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
-							<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
+							<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
+							</td>
 						</tr>
 					<% @sum += cart_item.item.non_taxed_price*cart_item.quantity*1.1%>
 					  <% end %>

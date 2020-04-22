@@ -4,6 +4,7 @@
 	  <h1>商品新規登録画面</h1>
 
 	  <%= form_for [:admins, @item] do |f| %>
+	  <%= render 'layouts/error_messages', model: f.object %>
 
 	    <div class="field">
 	      <%= f.label :image %>

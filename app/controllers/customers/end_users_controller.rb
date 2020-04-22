@@ -1,4 +1,5 @@
 class Customers::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
   def index
   end
 
@@ -11,9 +12,12 @@ class Customers::EndUsersController < ApplicationController
   end
 
   def update
-  	end_user = current_end_user
-  	end_user.update(end_user_params)
-  	redirect_to end_user_path(end_user)
+  	@end_user = current_end_user
+  	if @end_user.update(end_user_params)
+  	   redirect_to end_user_path(@end_user), notice: "会員情報が更新されました。"
+    else
+      render :edit
+    end
   end
 
   def confirm
