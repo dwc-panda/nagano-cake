@@ -2,11 +2,9 @@
 	<div class ="row">
 		<div class= "col">
 
-
 			<h1>商品一覧</h1>
 			<table>
 			<tbody>
-
 			<% @items.each do |item| %>
 			<td>
 			<%= attachment_image_tag(item, :image, size: "200x200") %><br>
@@ -16,6 +14,11 @@
 			</td>
 			</tbody>
 			</table>
+			<br><br>
+			<% if end_user_signed_in? %>
+			<% else %>
+			<p align="center"><%= link_to "新規登録", new_end_user_registration_path %></p>
+			<% end %>
 		</div>
 	</div>
 </div>
