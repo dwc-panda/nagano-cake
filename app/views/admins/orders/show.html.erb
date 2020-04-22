@@ -39,7 +39,6 @@
 				</thead>
 				<tbody>
 					<% @sum = 0 %>
-					<% @orders.each do |order| %>
 					<% @order.order_details.each do |order_detail| %>
 					<tr>
 
@@ -58,7 +57,7 @@
 						</td>
 						<td>
 							<%= form_with model: order_detail, url: admins_order_detail_path,method: :patch, local: true do |f| %>
-						<%= f.select :item_status,["着手不可","制作待ち","制作中","制作完了"],selected: order_detail.item_status%>
+						<%= f.select :item_status,["着手不可","制作待ち","制作中","制作完了"]%>
 
 						<%= f.submit "更新" %>
 						<% end %>
@@ -68,7 +67,6 @@
 					</tr>
 					<% @sum += order_detail.item.non_taxed_price * 1.1 * order_detail.quantity  %>
 
-					<% end %>
 					<% end %>
 				</tbody>
 			</table>
