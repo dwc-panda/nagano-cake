@@ -9,10 +9,49 @@
 
 		<%= form_with model: @order, url: orders_path, local: true do |f| %>
 		<%= render 'layouts/error_messages', model: f.object %>
+			<div class="row">
+				<div class="col-xs-8">
+					<table border="1">
+						<tr>
+							<th>商品名</th>
+							<th>単価（税込）</th>
+							<th>数量</th>
+							<th>小計</th>
+						</tr>
+						<% @cart_item.each do |cart_item| %>
+						<tr>
+							<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
+								  <%= cart_item.item.name %></td>
+							<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
+							<td><%= cart_item.quantity %></td>
+							<td><%= ((cart_item.quantity)*(cart_item.item.non_taxed_price)*1.1).floor.to_s(:delimited) %></td>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+				<div class="col-xs-3">
+					<table border="1">
+						<tr>
+							<td>送料</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>商品合計</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>請求金額</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+
 
 			<%= f.label :お支払い方法 %>
 			<%= @payment_type %>
-			<%= f.hidden_field :payment_type, :value => @payment_type %>
+			<%= f.hidden_field :payment_type, :value => @payment_type %><br>
 
 			<%= f.label :お届け先 %>
 			<%= @postcode %><%= @address %>
@@ -20,13 +59,13 @@
 			<%= f.hidden_field :postcode, :value => @postcode %>
 			<%= f.hidden_field :address, :value => @address %>
 			<%= f.hidden_field :direction, :value => @direction %>
-			<%= f.hidden_field :a, :value => @a %>
+			<%= f.hidden_field :a, :value => @a %><br>
 
 			<%= f.label :請求金額 %>
 			<%= f.hidden_field :total_price, :value => @total_price %>
-			<%= @total_price %>
+			<%= @total_price %><br>
 
-			<%= f.submit '購入' %>
+			<%= f.submit '購入を確定する' %>
 		<% end %>
 	</div>
 </div>

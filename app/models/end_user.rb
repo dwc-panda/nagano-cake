@@ -21,7 +21,7 @@ class EndUser < ApplicationRecord
   end
 
   enum is_deleted: {
-    無効: true,
+    退会済: true,
     有効: false
   }
 
