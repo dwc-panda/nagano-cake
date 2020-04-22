@@ -7,7 +7,6 @@ class Admins::OrderDetailsController < ApplicationController
 		@order_detail.save
 		@order_detail.order
 		redirect_to admins_order_path(@order_detail.order)
-
 	end
 
 	private

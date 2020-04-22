@@ -1,27 +1,60 @@
-<%= flash[:error] %>
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container-">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <div class="sign-title">
+      <%= flash[:error] %>
+      <h4>会員の方はこちらからログイン</h4>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "customers/end_users/shared/links" %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+      <div class="name">
+        <p>メールアドレス</p>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="sign-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "30" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+      <div class="name">
+        <p>パスワード</p>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="sign-field">
+        <%= f.password_field :password, autocomplete: "current-password", :size => "30" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-6">
+      <%= link_to "=> パスワードを忘れた方はこちら", new_end_user_password_path %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-4">
+      <div class="actions">
+        <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-2">
+      <h4>登録がお済みでない方</h4>
+        <%= link_to 'こちら', new_end_user_registration_path %> から新規登録を行ってください。
+    </div>
+  </div>
+</div>
