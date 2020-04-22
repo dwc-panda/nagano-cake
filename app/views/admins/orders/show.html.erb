@@ -21,7 +21,7 @@
 					<tr>
 						<%= form_with model: @order, url: admins_order_path,method: :patch, local: true do |f| %>
 						<%= f.label :注文ステータス %>
-						<%= f.select :order_status,Order.order_statuses.keys,{}, class: "select-default" %>
+						<%= f.select :order_status,Order.order_statuses.keys, class: "select-default" %>
 						<%= f.submit "更新" %>
 						<% end %>
 					</tr>
@@ -40,33 +40,31 @@
 				<tbody>
 					<% @sum = 0 %>
 					<% @order.order_details.each do |order_detail| %>
-					<tr>
 
-						<td>
+						<tr>
+							<td>
+								<%= order_detail.item.name %>
+							</td>
+							<td>
+								<%= (order_detail.item.non_taxed_price * 1.1).floor.to_s(:delimited) %>
+							</td>
+							<td>
+								<%= order_detail.quantity %>
+							</td>
+							<td>
+								<%= (order_detail.item.non_taxed_price * 1.1 * order_detail.quantity).floor.to_s(:delimited) %>
+							</td>
+							<td>
+								<%= form_with model: order_detail, url: admins_order_detail_path(order_detail), method: :patch, local: true do |f| %>
+									<%= f.select :item_status, OrderDetail.item_statuses.keys %>
 
-							<%= order_detail.item.name %>
-						</td>
-						<td>
-							<%= (order_detail.item.non_taxed_price * 1.1).floor.to_s(:delimited) %>
-						</td>
-						<td>
-							<%= order_detail.quantity %>
-						</td>
-						<td>
-							<%= (order_detail.item.non_taxed_price * 1.1 * order_detail.quantity).floor.to_s(:delimited) %>
-						</td>
-						<td>
-							<%= form_with model: order_detail, url: admins_order_detail_path,method: :patch, local: true do |f| %>
-						<%= f.select :item_status,["着手不可","制作待ち","制作中","制作完了"],selected: order_detail.item_status%>
 
-						<%= f.submit "更新" %>
-						<% end %>
+									<%= f.submit "更新" %>
+							<% end %>
 
-						</td>
-
-					</tr>
-					<% @sum += order_detail.item.non_taxed_price * 1.1 * order_detail.quantity  %>
-
+							</td>
+						</tr>
+						<% @sum += order_detail.item.non_taxed_price * 1.1 * order_detail.quantity  %>
 					<% end %>
 				</tbody>
 			</table>
