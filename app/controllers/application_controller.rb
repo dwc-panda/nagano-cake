@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 		if resource_or_scope.class == User
 			'/admins/'
 		elsif resource_or_scope.class == EndUser
-			items_path
+			root_path
 		else
 		end
 	end
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
 		if resource_or_scope == :admins_user
 			new_admins_user_session_path
 		elsif resource_or_scope == :end_user
-			items_path
+			root_path
 		else
 		end
 	end
