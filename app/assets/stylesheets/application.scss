@@ -21,6 +21,10 @@ header {
 	height: 50px;
 }
 
+.container {
+	width: 100%;
+}
+
 .topbox {
   display: inline-flex;
   margin: 5px;
@@ -38,5 +42,14 @@ header {
 }
 
 .name {
+	padding-left: 30px;
+}
+
+.pass-text {
 	padding-left: 40px;
+	margin-top: 20px;
+}
+
+.itembox {
+	margin-top: 50px;
 }

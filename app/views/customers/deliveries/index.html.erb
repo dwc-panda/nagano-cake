@@ -1,41 +1,55 @@
-<h1>配送先登録/一覧</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<div class="title">
+				<h2>配送先登録/一覧</h2>
+			</div>
+		</div>
+	</div>
 
-<%= form_for(@delivery) do |f| %>
+	<%= form_for(@delivery) do |f| %>
 
-	<h4>郵便番号(ハイフンなし)</h4>
-	<%= f.text_field :postcode %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-1">
+					<h4>郵便番号(ハイフンなし)</h4>
+    </div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="sign-field">
+					<%= f.text_field :postcode %>
+			</div>
+		</div>
 
-	<h4>住所</h4>
-	<%= f.text_field :address %>
+					<h4>住所</h4>
+					<%= f.text_field :address %>
 
-	<h4>宛名</h4>
-	<%= f.text_field :direction %>
+					<h4>宛名</h4>
+					<%= f.text_field :direction %>
 
-	<%= f.submit '登録する' %>
-<% end %>
+					<%= f.submit '登録する' %>
+				<% end %>
 
 
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>郵便番号</th>
-			<th>住所</th>
-			<th>宛名</th>
-			<th></th>
-			<th colspan="4"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @deliveries.each do |delivery| %>
-		<tr>
-			<td><%= delivery.postcode %></td>
-			<td><%= delivery.address %></td>
-			<td><%= delivery.direction %></td>
-			<td>
-				<%= link_to '編集する', edit_delivery_path(delivery) %>
-				<%= link_to '削除する', delivery_path(delivery), method: :delete %>
-			</td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>郵便番号</th>
+							<th>住所</th>
+							<th>宛名</th>
+							<th></th>
+							<th colspan="4"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @deliveries.each do |delivery| %>
+						<tr>
+							<td><%= delivery.postcode %></td>
+							<td><%= delivery.address %></td>
+							<td><%= delivery.direction %></td>
+							<td>
+								<%= link_to '編集する', edit_delivery_path(delivery) %>
+								<%= link_to '削除する', delivery_path(delivery), method: :delete %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
