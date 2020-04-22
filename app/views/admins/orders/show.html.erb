@@ -40,6 +40,7 @@
 				<tbody>
 					<% @sum = 0 %>
 					<% @order.order_details.each do |order_detail| %>
+
 						<tr>
 							<td>
 								<%= order_detail.item.name %>
@@ -57,13 +58,17 @@
 								<%= form_with model: order_detail, url: admins_order_detail_path(order_detail), method: :patch, local: true do |f| %>
 									<%= f.select :item_status, OrderDetail.item_statuses.keys %>
 
+
 									<%= f.submit "更新" %>
 							<% end %>
 
 							</td>
 
+
+
 						</tr>
 						<% @sum += order_detail.item.non_taxed_price * 1.1 * order_detail.quantity  %>
+
 					<% end %>
 				</tbody>
 			</table>
