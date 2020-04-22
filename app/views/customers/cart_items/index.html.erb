@@ -28,14 +28,18 @@
 					<% @sum = 0 %>
 					<% @cart_items.each do |cart_item| %>
 					  <%= form_for(cart_item) do |f| %>
+					  <%= render 'layouts/error_messages', model: f.object %>
 						<tr>
 							<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
-								<%= cart_item.item.name %></td>
-							<td>￥ <%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
+								  <%= cart_item.item.name %>
+							</td>
+							<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
 							<td><%= f.select :quantity, ((1..10).to_a) %>
-								<%= f.submit "変更" %></td>
-							<td>￥ <%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
-							<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %></td>
+								  <%= f.submit "変更" %>
+							</td>
+							<td><%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
+							<td><%= link_to "削除", cart_item_path(cart_item),class:"btn btn-danger", method: :delete, data: {confirm: "本当に削除してもよろしいですか？"} %>
+							</td>
 						</tr>
 						<% @sum += cart_item.item.non_taxed_price*cart_item.quantity*1.1%>
 					  <% end %>
@@ -49,7 +53,6 @@
 		<div class="col-xs-2 col-xs-offset-1">
 			<%= link_to "買い物を続ける", items_path, class: "btn btn-primary btn-block" %>
 		</div>
-
 		<div class="col-xs-3 col-xs-offset-6">
 			<h4>合計金額</h4>
 			￥ <%= @sum.floor.to_s(:delimited) %>

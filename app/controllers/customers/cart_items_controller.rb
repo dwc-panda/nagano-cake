@@ -1,5 +1,5 @@
 class Customers::CartItemsController < ApplicationController
-
+before_action :authenticate_end_user!
 	def index
        @cart_items = CartItem.where(end_user_id: current_end_user.id)
        # cart_item = CartItem.find(params[:id])

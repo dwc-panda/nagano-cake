@@ -1,6 +1,7 @@
 <h1>登録情報編集</h1>
 
-<%= form_for @end_user do |f| %>
+<%= form_with model: @end_user, url: end_user_path(@end_user), local: true, method: :patch do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
 	<table>
 		<thead>
 			<tr>

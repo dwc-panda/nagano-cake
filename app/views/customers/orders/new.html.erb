@@ -8,6 +8,7 @@
   </div>
 
   <%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
   <div class="row">
     <div class="col-xs-3 col-xs-offset-1">

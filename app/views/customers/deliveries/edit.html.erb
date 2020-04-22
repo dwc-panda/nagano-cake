@@ -1,6 +1,7 @@
 <h1>配送先編集</h1>
 
 <%= form_for (@delivery) do |f| %>
+<%= render 'layouts/error_messages', model: f.object %>
 
 	<h4>郵便番号(ハイフンなし)</h4>
 	<%= f.text_field :postcode %>

@@ -1,6 +1,5 @@
 class Admins::OrderDetailsController < ApplicationController
-
-
+before_action :authenticate_admins_user!
 	def update
 		@order_detail = OrderDetail.find(params[:id])
 		@order_detail.item_status = params[:order_detail][:item_status]

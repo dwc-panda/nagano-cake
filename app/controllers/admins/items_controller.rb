@@ -1,4 +1,5 @@
 class Admins::ItemsController < ApplicationController
+  before_action :authenticate_admins_user!
   def index
   	@items = Item.all
   end
@@ -9,8 +10,12 @@ class Admins::ItemsController < ApplicationController
 
   def create
   	@item = Item.new(item_params)
-    @item.save
-  	redirect_to admins_items_path
+    
+    if @item.save
+  	   	redirect_to admins_item_path(@item), notice: "商品が登録されました"
+    else
+      render :new
+    end
   end
 
   def show
@@ -23,8 +28,11 @@ class Admins::ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    redirect_to admins_item_path(@item)
+    if @item.update(item_params)
+      redirect_to admins_item_path(@item), notice: "商品情報が更新されました"
+    else
+      render :edit
+    end
   end
 
   private
