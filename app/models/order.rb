@@ -1,6 +1,11 @@
 class Order < ApplicationRecord
 	belongs_to :end_user
 	has_many :order_details, dependent: :destroy
+
+	validates :direction, presence: true
+	validates :address, presence: true
+	validates :postcode, presence: true
+
 	enum payment_type: {
 		クレジットカード: 0,
 		銀行振り込み: 1

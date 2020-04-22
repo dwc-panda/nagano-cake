@@ -1,10 +1,15 @@
 class Customers::DeliveriesController < ApplicationController
-
+	before_action :authenticate_end_user!
 	def create
 		@delivery = Delivery.new(delivery_params)
 		@delivery.end_user_id = current_end_user.id
-		@delivery.save
-		redirect_back(fallback_location: deliveries_path)
+		if @delivery.save
+			flash[:notice] = "配送先が登録されました"
+		   redirect_back(fallback_location: deliveries_path)
+		else
+		   @deliveries = Delivery.all
+		   render :index
+		end
 	end
 
 	def index
@@ -18,8 +23,11 @@ class Customers::DeliveriesController < ApplicationController
 
 	def update
 		@delivery = Delivery.find(params[:id])
-		@delivery.update(delivery_params)
-		redirect_to deliveries_path
+		if @delivery.update(delivery_params)
+		   redirect_to deliveries_path, notice: "配送先情報が更新されました"
+		else
+			render :edit
+		end
 	end
 
 	def destroy

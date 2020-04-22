@@ -1,4 +1,5 @@
 class Customers::OrdersController < ApplicationController
+  before_action :authenticate_end_user!
   def index #注文履歴一覧
   	@orders = Order.where(end_user_id: current_end_user.id) #ログイン中のユーザーの注文履歴を表示
   end
@@ -46,18 +47,21 @@ class Customers::OrdersController < ApplicationController
       delivery = current_end_user.deliveries.new(order_deli_params)
       delivery.save
     end
-    order.save #注文確定
-    current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成。1カートごとに注文詳細履歴を作る。
-      order_detail = OrderDetail.new
-      order_detail.item_id = cart_item.item.id
-      order_detail.price = cart_item.item.non_taxed_price
-      order_detail.quantity = cart_item.quantity
-      order_detail.item_status = 0
-      order_detail.order_id = order.id
-      order_detail.save #注文履歴保存
+    if order.save #注文確定
+      current_end_user.cart_items.each do |cart_item| #注文詳細履歴作成。1カートごとに注文詳細履歴を作る。
+        order_detail = OrderDetail.new
+        order_detail.item_id = cart_item.item.id
+        order_detail.price = cart_item.item.non_taxed_price
+        order_detail.quantity = cart_item.quantity
+        order_detail.item_status = 0
+        order_detail.order_id = order.id
+        order_detail.save #注文履歴保存
+      end
+      current_end_user.cart_items.destroy_all #カートを空にする
+      redirect_to thanks_path
+    else
+      render :new
     end
-    current_end_user.cart_items.destroy_all #カートを空にする
-    redirect_to thanks_path
   end
 
   def show

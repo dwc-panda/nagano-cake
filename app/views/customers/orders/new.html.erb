@@ -3,6 +3,7 @@
 
   	<h2>注文情報入力</h2>
   		<%= form_with model: @order, url: order_confirm_path, local: true do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
 
   			<h4>お支払い方法</h4>
 
