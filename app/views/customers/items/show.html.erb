@@ -1,25 +1,32 @@
 <div class="container">
-  <div class="row">
-	<div class="col">
-			<h2>商品詳細画面</h2>
-	</div>
-  </div>
+	<div class="itembox">
+		<div class ="row">
+			<div class= "col-xs-3 col-xs-offset-2">
+				<div class="item-image">
+					<%= attachment_image_tag(@item, :image, size: "200x200") %>
+				</div>
+			</div>
 
-  <div class="row">
-  	<div class="col-xs-4">
-			<%= attachment_image_tag(@item, :image, size: "200x200") %>
-	</div>
-	<div class="col-xs-7">
-			<%= @item.name %><br>
-			<%= @item.detail %><br>
-			<%= (@item.non_taxed_price*1.1).floor.to_s(:delimited) %>
+			<div class="col-xs-6">
+				<div class="item-name">
+					<h3><%= @item.name %></h3>
+				</div>
+				<div class="item-detail">
+				<h5><%= @item.detail %></h5>
+				</div>
+				<div class="item-money">
+				<h4>￥ <%= (@item.non_taxed_price*1.1).floor.to_s(:delimited) %> (税込)</h4>
+				</div>
 
 		  <%= form_for(@cart_item) do |f| %>
+
+		  	<div class="item-form">
          	<%= f.hidden_field :item_id, value: @item.id %>
          	<%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
          	<%= f.submit "カートに入れる" %>
           <% end %>
-
-	</div>
-  </div>
+    		</div>
+   		</div>
+		</div>
+ 	</div>
 </div>
