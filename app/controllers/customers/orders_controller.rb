@@ -26,6 +26,7 @@ class Customers::OrdersController < ApplicationController
       @direction = order_params[:direction]
       @a = 1
     end
+    @cart_item = CartItem.where(end_user_id: current_end_user.id)
     @cart_items = current_end_user.cart_items
     @payment_type = order_params[:payment_type]
     @total_price = 0
