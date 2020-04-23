@@ -21,7 +21,7 @@
 	    商品名	<%= @item.name %><br>
 	    商品説明 <%= @item.detail %><br>
 	    ジャンル <%= @item.genre_id %><br>
-	    税込価格(税抜価格) (<%= @item.non_taxed_price %>)<br>
+	    税込価格(税抜価格) ¥<%= ((@item.non_taxed_price)*1.1).floor.to_s(:delimited) %>(¥<%= @item.non_taxed_price %>)<br>
 	    販売ステータス <%= @item.is_valid %>
 	    <%= link_to "編集する", edit_admins_item_path(@item), class: "pull-right" %>
 

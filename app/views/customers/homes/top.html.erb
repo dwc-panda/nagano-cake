@@ -42,7 +42,7 @@
 			<div class="name">
 		  	<%= link_to items_path do %>
 		  		商品名: <%= item.name %><br>
-		  		¥<%= item.non_taxed_price %>
+		  		¥<%= (item.non_taxed_price).floor.to_s(:delimited) %>
 		  	</div><br>
 		  	<% end %>
 	  	<% end %>

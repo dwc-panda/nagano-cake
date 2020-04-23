@@ -14,7 +14,11 @@
       <nav class="navbar">
         <div class="container">
           <div class="navbar-header">
-          <%= link_to root_path do %><h3>LOGO</h3><% end %>
+            <% if admins_user_signed_in? %>
+            <%= link_to admins_root_path do %><h3>LOGO</h3><% end %>
+            <% else %>
+            <%= link_to root_path do %><h3>LOGO</h3><% end %>
+            <% end %>
           </div>
           <ul class="nav navbar-nav navbar-right">
             <% if admins_user_signed_in? %>
