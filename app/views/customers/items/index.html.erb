@@ -20,13 +20,15 @@
 						<%= attachment_image_tag(item, :image, size: "200x200") %>
 						<% end %>
 						</div><br>
+						<%= link_to item_path(item) do %>
 						<div class="name">
 						商品名: 
-						<%= link_to item.name, item_path(item) %><br>
+						<%= item.name %><br>
 						¥
 						<%= item.non_taxed_price %>
 						</div><br>
 						</td>
+						<% end %>
 					<% end %>
 
 				</tbody>
