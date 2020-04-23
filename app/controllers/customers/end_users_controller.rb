@@ -35,6 +35,6 @@ class Customers::EndUsersController < ApplicationController
 
   private
   def end_user_params
-  	params.require(:end_user).permit(:is_delete, :first_name, :last_name, :first_kana_name, :last_kana_name, :postcode, :address, :phone_number)
+  	params.require(:end_user).permit(:is_delete, :first_name, :last_name, :first_kana_name, :last_kana_name, :postcode, :address, :phone_number, :email)
   end
 end
