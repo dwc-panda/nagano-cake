@@ -1,9 +1,63 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-3 col-xs-offset-1">
-			<div class="title">
+			<div class="sign-title">
 				<h2>注文情報確認</h2>
 			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-1">
+			<table class="table">
+
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価（税込み）</th>
+						<th>数量</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @sum = 0 %>
+					<% @cart_items.each do |cart_item| %>
+
+						<tr>
+							<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
+								  <%= cart_item.item.name %>
+							</td>
+							<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
+							<td><%= cart_item.quantity %></td>
+							<td><%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
+						</tr>
+						<% @sum += cart_item.item.non_taxed_price*cart_item.quantity*1.1%>
+					<% end %>
+				</tbody>
+
+			</table>
+		</div>
+
+		<div class="col-xs-3 col-xs-offset-1">
+
+			<% @postage = 800 %>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>商品合計</th>
+						<td><%= @sum.floor.to_s(:delimited) %></td>
+					</tr>
+					<tr>
+						<th>送料</th>
+						<td><%= @postage %></td>
+					</tr>
+					<tr>
+						<th>請求金額</th>
+						<td> <%= (@sum + @postage).floor.to_s(:delimited) %></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
@@ -49,23 +103,46 @@
 			</div>
 
 
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-1">
 			<%= f.label :お支払い方法 %>
+		</div>
+		<div class="col-xs-2">
 			<%= @payment_type %>
-			<%= f.hidden_field :payment_type, :value => @payment_type %><br>
+			<%= f.hidden_field :payment_type, :value => @payment_type %>
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-1">
 			<%= f.label :お届け先 %>
-			<%= @postcode %><%= @address %>
-			<%= @direction %>
+		</div>
+		<div class="col-xs-6">
+			〒 <%= @postcode %><%= @address %>
 			<%= f.hidden_field :postcode, :value => @postcode %>
 			<%= f.hidden_field :address, :value => @address %>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-1">
+			<%= f.label :宛先 %>
+		</div>
+		<div class="col-xs-6">
+			<%= @direction %>
 			<%= f.hidden_field :direction, :value => @direction %>
-			<%= f.hidden_field :a, :value => @a %><br>
+			<%= f.hidden_field :a, :value => @a %>
+		</div>
+	</div>
 
-			<%= f.label :請求金額 %>
+<!-- 表示を整えたかったため一旦コメントアウトしました。 -->
+			<%#= f.label :請求金額 %>
 			<%= f.hidden_field :total_price, :value => @total_price %>
-			<%= @total_price %><br>
+			<%#= @total_price %>
 
-			<%= f.submit '購入を確定する' %>
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-5">
+			<%= f.submit '購入を確定する', class: "btn btn-primary btn-block" %>
 		<% end %>
 	</div>
 </div>

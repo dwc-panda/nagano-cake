@@ -1,6 +1,15 @@
 <div class="container">
-	<h1>注文履歴詳細</h1>
-		<h2>注文情報</h2>
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <div class="sign-title">
+
+				<h2>注文履歴詳細</h2>
+			</div>
+		</div>
+	</div>
+ 	<div class="row">
+		<div class="col-xs-6 col-xs-offset-1">
+			<h4>注文情報</h4>
 			<table class="table">
 				<thead>
 					<tr>
@@ -14,7 +23,10 @@
 					</tr>
 					<tr>
 						<td>配送先</td>
-						<td><%= @order.address %></td>
+						<td>〒 <%= @order.postcode %>
+								<%= @order.address %><br>
+								<%= @order.direction %>
+						</td>
 					</tr>
 					<tr>
 						<td>支払い方法</td>
@@ -26,22 +38,29 @@
 					</tr>
 				</tbody>
 			</table>
-		<h2>請求情報</h2>
+		</div>
+		<div class="col-xs-3 col-xs-offset-1">
+			<h4>請求情報</h4>
 			<table class="table">
-				<tr>
-					<td>商品合計</td>
-					<td><%= @order.total_price.to_s(:delimited) %></td>
-				</tr>
-				<tr>
-					<td>配送料</td>
-					<td><%= @order.postage.to_s(:delimited) %></td>
-				</tr>
-				<tr>
-					<td><strong>ご請求額</strong></td>
-					<td><%= (((@order.total_price + @order.postage) * @order.tax ).floor).to_s(:delimited) %></td>
-				</tr>
+					<tr>
+						<td>商品合計</td> <!--taxの追加 -->
+						<td><%= (@order.total_price * @order.tax).floor.to_s(:delimited) %></td>
+					</tr>
+					<tr>
+						<td>配送料</td>
+						<td><%= @order.postage %></td>
+					</tr>
+					<tr>
+						<td><strong>ご請求額</strong></td><!--送料も*tax1.1されていたので入れ替えました -->
+						<td><%= ((@order.total_price * @order.tax) + @order.postage ).floor.to_s(:delimited) %></td>
+					</tr>
 			</table>
-		<h2>注文内容</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-1">
+			<h4>注文内容</h4>
 			<table class="table">
 				<thead>
 					<tr>
@@ -56,11 +75,13 @@
 					<% @order.order_details.each do |order_detail| %>
 						<tr>
 							<td><%= order_detail.item.name %></td>
-							<td><%= (order_detail.price * @order.tax).floor %></td>
+							<td><%= (order_detail.price * @order.tax).floor.to_s(:delimited) %></td>
 							<td><%= order_detail.quantity %></td>
-							<td><%= order_detail.quantity * order_detail.price %></td>
+							<td><%= (order_detail.quantity * order_detail.price * @order.tax).floor.to_s(:delimited) %></td><!--taxの追加 -->
 						</tr>
 					<% end %>
 				</tbody>
 			</table>
+		</div>
+	</div>
 </div>

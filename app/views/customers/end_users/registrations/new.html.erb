@@ -2,10 +2,13 @@
   <div class="row">
     <div class="col-xs-3 col-xs-offset-1">
       <div class="sign-title">
+
         <h2>新規会員登録</h2>
+
       </div>
     </div>
   </div>
+
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -19,9 +22,9 @@
       </div>
     </div>
     <div class="col-xs-2">
-        <div class="sign-field">
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      </div>
     </div>
     <div class="col-xs-1">
       <div class="name">
@@ -29,9 +32,9 @@
       </div>
     </div>
     <div class="col-xs-5">
-        <div class="sign-field">
-          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      </div>
     </div>
   </div>
 
@@ -45,21 +48,19 @@
       </div>
     </div>
     <div class="col-xs-2">
-        <div class="sign-field">
-          <%= f.text_field :first_kana_name, autofocus: true, autocomplete: "first_kana_name" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :first_kana_name, autofocus: true, autocomplete: "first_kana_name" %>
+      </div>
     </div>
-
     <div class="col-xs-1">
       <div class="name">
         <p>(メイ)</p>
       </div>
     </div>
-
     <div class="col-xs-5">
-        <div class="sign-field">
-          <%= f.text_field :last_kana_name, autofocus: true, autocomplete: "last_kana_name" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :last_kana_name, autofocus: true, autocomplete: "last_kana_name" %>
+      </div>
     </div>
   </div>
 
@@ -68,9 +69,9 @@
       <p>メールアドレス</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+      <div class="sign-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
     </div>
   </div>
 
@@ -79,9 +80,9 @@
       <p>郵便番号(ハイフンなし)</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+      </div>
     </div>
   </div>
 
@@ -90,9 +91,9 @@
       <p>住所</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", :size => "60" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :address, autofocus: true, autocomplete: "address", :size => "60" %>
+     </div>
     </div>
   </div>
 
@@ -101,9 +102,9 @@
       <p>電話番号(ハイフンなし)</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
-        </div>
+      <div class="sign-field">
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+      </div>
     </div>
   </div>
 
@@ -112,9 +113,9 @@
       <p>パスワード(6文字以上)</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
+      <div class="sign-field">
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
     </div>
   </div>
 
@@ -123,17 +124,17 @@
       <p> パスワード(確認用)</p>
     </div>
     <div class="col-xs-4 col-xs-offset-1">
-        <div class="sign-field">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
+      <div class="sign-field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-2 col-xs-offset-5">
-        <div class="actions">
-          <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
-        </div>
+      <div class="actions">
+        <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
+      </div>
       <% end %>
     </div>
   </div>
