@@ -7,6 +7,7 @@ class Item < ApplicationRecord
 	validates :name, presence: true
 	validates :detail, presence: true
 	validates :non_taxed_price, presence: true
+	validates :image, presence: true
 
 	enum is_valid: {
 		無効: true,
