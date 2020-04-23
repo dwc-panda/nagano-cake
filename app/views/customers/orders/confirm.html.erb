@@ -7,26 +7,88 @@
 		</div>
 	</div>
 
-		<%= form_with model: @order, url: orders_path, local: true do |f| %>
-		<%= render 'layouts/error_messages', model: f.object %>
+	<div class="row">
+		<div class="col-xs-5 col-xs-offset-1">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>商品名</th>
+						<th>単価（税込み）</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @sum = 0 %>
+					<% @cart_items.each do |cart_item| %>
+					<tr>
+						<td><%= attachment_image_tag(cart_item.item, :image, size: "50x50") %>
+							<%= cart_item.item.name %>
+						</td>
+						<td><%= (cart_item.item.non_taxed_price*1.1).floor.to_s(:delimited) %></td>
+						<td><%= cart_item.quantity %>
+						</td>
+						<td><%= (cart_item.item.non_taxed_price*cart_item.quantity*1.1).floor.to_s(:delimited) %></td>
+					</tr>
+					<% @sum += cart_item.item.non_taxed_price*cart_item.quantity*1.1%>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
 
-			<%= f.label :お支払い方法 %>
-			<%= @payment_type %>
-			<%= f.hidden_field :payment_type, :value => @payment_type %>
-
-			<%= f.label :お届け先 %>
-			<%= @postcode %><%= @address %>
-			<%= @direction %>
-			<%= f.hidden_field :postcode, :value => @postcode %>
-			<%= f.hidden_field :address, :value => @address %>
-			<%= f.hidden_field :direction, :value => @direction %>
-			<%= f.hidden_field :a, :value => @a %>
-
-			<%= f.label :請求金額 %>
-			<%= f.hidden_field :total_price, :value => @total_price %>
-			<%= @total_price %>
-
-			<%= f.submit '購入' %>
-		<% end %>
+		<% @postage = 800 %>
+		<div class="col-xs-3 col-xs-offset-1">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>送料</th>
+						<td><%= @postage %></td>
+					</tr>
+					<tr>
+						<th>商品合計</th>
+						<td><%= @sum.floor.to_s(:delimited) %></td>
+					</tr>
+					<tr>
+						<th>請求金額合計</th>
+						<td> <%= (@sum + @postage).floor.to_s(:delimited) %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
-</div>
+	<div class="row">
+		<div class="col-xs-4 col-xs-offset-1">
+			<%= form_with model: @order, url: orders_path, local: true do |f| %>
+			<%= render 'layouts/error_messages', model: f.object %>
+			<table>
+				<tbody>
+					<tr>
+						<th><%= f.label :支払方法 %></th>
+
+						<td><%= @payment_type %>
+							<%= f.hidden_field :payment_type, :value => @payment_type %></td>
+						</tr>
+						<tr>
+							<th><%= f.label :お届け先 %></th>
+							<td><%= @postcode %><%= @address %></td>
+						</tr>
+						<tr>
+							<th></th>
+							<td><%= @direction %></td>
+						</tr>
+						<%= f.hidden_field :postcode, :value => @postcode %>
+						<%= f.hidden_field :address, :value => @address %>
+						<%= f.hidden_field :direction, :value => @direction %>
+						<%= f.hidden_field :a, :value => @a %>
+						<%= f.hidden_field :total_price, :value => @total_price %>
+					</tbody>
+				</table>
+
+				<div class="col-xs-6 col-xs-offset-1">
+					<%= f.submit '購入を確定する',class: "btn btn-success"  %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
