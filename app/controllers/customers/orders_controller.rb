@@ -31,7 +31,7 @@ class Customers::OrdersController < ApplicationController
     @payment_type = order_params[:payment_type]
     @total_price = 0
     current_end_user.cart_items.each do |cart_item|
-      @total_price += cart_item.item.non_taxed_price * 1.1.floor * cart_item.quantity #請求金額
+      @total_price += cart_item.item.non_taxed_price * cart_item.quantity #請求金額 追加4/23 計算を合わせるため修正
     end
     @order = Order.new
   end
