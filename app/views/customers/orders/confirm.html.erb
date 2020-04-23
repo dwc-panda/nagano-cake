@@ -43,7 +43,7 @@
 
 		<div class="col-xs-3 col-xs-offset-1">
 
-			<% @postage = 800 %>
+
 			<table class="table">
 				<tbody>
 					<tr>
@@ -52,11 +52,11 @@
 					</tr>
 					<tr>
 						<th>送料</th>
-						<td><%= @postage %></td>
+						<td><%= @order.postage %></td>
 					</tr>
 					<tr>
 						<th>請求金額</th>
-						<td> <%= (@sum + @postage).floor.to_s(:delimited) %></td>
+						<td> <%= (@sum + @order.postage).floor.to_s(:delimited) %></td>
 					</tr>
 				</tbody>
 			</table>
