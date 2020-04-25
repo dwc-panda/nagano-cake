@@ -9,11 +9,16 @@
 		</div>
 	</div>
 
+<!-- エラーメッセージのため<div>で囲みました -->
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+    <%= form_with model: @end_user, url: end_user_path(@end_user), local: true, method: :patch do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+  </div>
+</div>
+
   <div class="row">
     <div class="col-xs-2 col-xs-offset-1">
-
-		<%= form_with model: @end_user, url: end_user_path(@end_user), local: true, method: :patch do |f| %>
-		<%= render 'layouts/error_messages', model: f.object %>
 
       <p>名前</p>
     </div>

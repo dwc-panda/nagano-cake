@@ -12,10 +12,10 @@ before_action :authenticate_end_user!
 		cart_item =CartItem.new(cart_items_params)
 		cart_item.end_user_id = current_end_user.id
 		if current_end_user.cart_items.where(item_id: cart_item.item_id).exists?#cart_item.item_idパラメータで渡しているcart_itemに紐づくitem_id
-			 redirect_back(fallback_location: root_path)
+			 redirect_back(fallback_location: root_path, notice: "カートに商品はあります。")
 		else
 			 cart_item.save
-		   redirect_to cart_items_path
+		   redirect_to cart_items_path, notice: "カートに商品を入れました。"
 		end
 	end
 #destroyメソッドはwhereと併せて使うらしい
