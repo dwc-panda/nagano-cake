@@ -10,7 +10,7 @@
 	  	<tr>
 	  	  <td>
 	  	  	<% @genre.each do |genre| %>
-	  	  	  <h3><%=link_to genre.name, items_path %></h3><br>
+	  	  	  <h3><%=link_to genre.name, search_path(genre) %></h3><br>
 	  	  	<% end %>
 	  	  </td>
 	  	</tr>
