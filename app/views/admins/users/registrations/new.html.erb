@@ -1,29 +1,60 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <div class="sign-title">
+        <h2>新規管理者登録</h2>
+      </div>
+    </div>
+  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-1">
+      <p>メールアドレス</p>
+    </div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="sign-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-1">
+      <p>パスワード(6文字以上)</p>
+    </div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="sign-field">
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-1">
+      <p> パスワード(確認用)</p>
+    </div>
+    <div class="col-xs-4 col-xs-offset-1">
+      <div class="sign-field">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-5">
+      <div class="actions">
+        <%= f.submit "新規登録", class: "btn btn-success btn-block" %>
+      </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <h4>既に登録済みの場合</h4>
+      <%= link_to 'こちら', new_admins_user_session_path %> からログインしてください
+    </div>
+  </div>
+</div>
 
-<%= render "admins/users/shared/links" %>
+

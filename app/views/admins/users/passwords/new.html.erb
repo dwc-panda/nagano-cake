@@ -1,16 +1,50 @@
-<h2>Forgot your password?</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<div class="sign-title">
+				<h4>パスワード再設定</h4>
+			</div>
+		</div>
+	</div>
+	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+	<%= render "devise/shared/error_messages", resource: resource %>
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-2">
+			<div class="name">
+				<p>メールアドレス</p>
+			</div>
+		</div>
+		<div class="col-xs-3">
+			<div class="sign-field">
+				<%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "30" %>
+			</div>
+		</div>
+		<div class="col-xs-3">
+			<%= f.submit "送信", class: "btn btn-primary btn-sm" %>
+		</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="col-xs-7 col-xs-offset-2">
+			<div>※パスワードを忘れた方は、パスワードの再発行をして下さい。</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-7 col-xs-offset-2">
+			<div>会員登録時にご登録して頂いたメールアドレスにパスワード再発行手続きのメールをお送りします。</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-1">
+		<%= link_to "新規登録", new_admins_user_registration_path %>
+	</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-xs-3 col-xs-offset-1">
+		<%= link_to "ログイン", new_admins_user_session_path %>
+	</div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "admins/users/shared/links" %>
