@@ -1,16 +1,18 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-3 col-xs-offset-1">
+    <div class="col-xs-5 col-xs-offset-1">
       <div class="sign-title">
 
 				<h1>配送先編集</h1>
+
+				<%= form_for (@delivery) do |f| %><!-- divの中に移動 -->
+				<%= render 'layouts/error_messages', model: f.object %>
 
 			</div>
 		</div>
 	</div>
 
-<%= form_for (@delivery) do |f| %>
-<%= render 'layouts/error_messages', model: f.object %>
+
 
   <div class="row">
     <div class="col-xs-2 col-xs-offset-1">

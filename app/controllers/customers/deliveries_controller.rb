@@ -1,5 +1,6 @@
 class Customers::DeliveriesController < ApplicationController
 	before_action :authenticate_end_user!
+	before_action :baria_delivery, only: [:edit, :update]#他の人が更新できないように
 	def create
 		@delivery = Delivery.new(delivery_params)
 		@delivery.end_user_id = current_end_user.id
@@ -7,13 +8,13 @@ class Customers::DeliveriesController < ApplicationController
 			flash[:notice] = "配送先が登録されました"
 		   redirect_back(fallback_location: deliveries_path)
 		else
-		   @deliveries = Delivery.all
+		   @deliveries = Delivery.where(end_user_id: current_end_user)
 		   render :index
 		end
 	end
 
 	def index
-		@deliveries = Delivery.all
+		@deliveries = Delivery.where(end_user_id: current_end_user)#current_end_userに紐づく登録住所
 		@delivery = Delivery.new
 	end
 
@@ -39,5 +40,12 @@ class Customers::DeliveriesController < ApplicationController
 	private
 	def delivery_params
 		params.require(:delivery).permit(:postcode, :direction, :address)
+	end
+
+   def baria_delivery
+    @delivery = Delivery.find(params[:id])
+    if @delivery.end_user_id != current_end_user.id
+       redirect_to deliveries_path
+    end
 	end
 end
