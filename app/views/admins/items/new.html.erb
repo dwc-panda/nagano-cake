@@ -1,49 +1,50 @@
 <div class="container">
-  <div class="row">
-    <div class="col">
-	  <h1>商品新規登録画面</h1>
-
-	  <%= form_for [:admins, @item] do |f| %>
-	  <%= render 'layouts/error_messages', model: f.object %>
-
-	    <div class="field">
-	      <%= f.label :image %>
-	      <%= f.attachment_field :image %>
-	    </div>
-
-	    <div class="field">
-	      <%= f.label :商品名 %>
-	      <%= f.text_field :name %>
-	    </div>
-
-	    <div class="field">
-	      <%= f.label :商品説明 %>
-	      <%= f.text_area :detail %>
-	    </div>
-
-	    <div class="field">
-	      <%= f.label :ジャンル %>
-	      <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
-	    </div>
-
-
-	    <div class="field">
-	      <%= f.label :税込価格 %>
-	      <%= f.text_field :non_taxed_price %> 円
-	    </div>
-
-	    <div class="field">
-	      <%= f.label :販売ステータス %>
-	      <%= f.select :is_valid, [["販売中","有効"],["売切れ","無効"]] %>
-	    </div>
-
-	    <div class="action">
-	      <%= f.submit "新規登録" %>
-	    </div>
-
-	   <% end %>
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="title">
+				<h2>商品新規登録画面</h2>
+			</div>
+		</div>
 	</div>
-  </div>
+	<%= form_for [:admins, @item] do |f| %>
+	<%= render 'layouts/error_messages', model: f.object %>
+	<div class="row">
+		<div class="col-xs-1 col-xs-offset-1">
+			<%= attachment_image_tag(@item, :image, size: "200x200", fallback: "no_image.png") %>
+		</div>
+		<div class="col-xs-4 col-xs-offset-2 ">
+			<%= f.label :商品名 %>
+			<%= f.text_field :name %>
+		</div>
+		<div class="col-xs-4  col-xs-offset-2  ">
+			<%= f.label :商品説明 %>
+			<%= f.text_area :detail %>
+		</div>
+		<div class="col-xs-4  col-xs-offset-2  ">
+			<%= f.label :ジャンル %>
+			<%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+		</div>
+		<div class="col-xs-4  col-xs-offset-2 ">
+			<%= f.label :税抜価格 %>
+			<%= f.text_field :non_taxed_price %> 円
+		</div>
+		<div class="col-xs-4  col-xs-offset-2  ">
+			<%= f.label :販売ステータス %>
+			<%= f.select :is_valid, [["販売中","有効"],["売切れ","無効"]] %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-1 col-xs-offset-2 ">
+			<label>
+				<span class="btn btn-primary">画像選択<input type="file" style="display:none"></span>
+			</label>
+		</div>
+		 <%= f.attachment_field :image %>
+		<div class="col-xs-1 col-xs-offset-3 ">
+			<%= f.submit "新規登録",class: "btn btn-primary" %>
+		</div>
+	</div>
+	<% end %>
 </div>
 
 

@@ -12,79 +12,80 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-xs-6 col-xs-offset-1">
+</div>
+<div class="row">
+	<div class="col-xs-6 col-xs-offset-1">
 
-			<%= form_for [:admins, @end_user] do |f| %>
-			<%= render 'layouts/error_messages', model: f.object %>
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>会員ID</h4>
-				</div>
-				<%= @end_user.id %>
+		<%= form_for [:admins, @end_user] do |f| %>
+		<%= render 'layouts/error_messages', model: f.object %>
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>会員ID</h4>
 			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>氏名</h4>
-				</div>
-				<%= f.text_field :first_name %>
-				<%= f.text_field :last_name %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>フリガナ</h4>
-				</div>
-
-				<%= f.text_field :first_kana_name %>
-				<%= f.text_field :last_kana_name %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>郵便番号</h4>
-				</div>
-
-				<%= f.text_field :postcode %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>住所</h4>
-				</div>
-
-				<%= f.text_field :address %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>電話番号</h4>
-				</div>
-				<%= f.text_field :phone_number %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>メールアドレス</h4>
-				</div>
-				<%= f.text_field :email %>
-			</div>
-
-			<div class="row">
-				<div class="col-xs-6 ">
-					<h4>会員ステータス</h4>
-				</div>
-
-				<%= f.label :is_deleted, "有効" %>
-				<%= f.radio_button :is_deleted, "有効" %>
-				<%= f.label :is_deleted, "退会済み" %>
-				<%= f.radio_button :is_deleted, "退会済み" %>
-			</div>
-
-			<%= f.submit '変更を保存する', class: "btn btn-primary" %>
-
-			<% end %>
+			<%= @end_user.id %>
 		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>氏名</h4>
+			</div>
+			<%= f.text_field :first_name %>
+			<%= f.text_field :last_name %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>フリガナ</h4>
+			</div>
+
+			<%= f.text_field :first_kana_name %>
+			<%= f.text_field :last_kana_name %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>郵便番号</h4>
+			</div>
+
+			<%= f.text_field :postcode %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>住所</h4>
+			</div>
+
+			<%= f.text_field :address %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>電話番号</h4>
+			</div>
+			<%= f.text_field :phone_number %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>メールアドレス</h4>
+			</div>
+			<%= f.text_field :email %>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-6 ">
+				<h4>会員ステータス</h4>
+			</div>
+
+			<%= f.label :is_deleted, "有効" %>
+			<%= f.radio_button :is_deleted, "有効" %>
+			<%= f.label :is_deleted, "退会済み" %>
+			<%= f.radio_button :is_deleted, "退会済み" %>
+		</div>
+
+		<%= f.submit '変更を保存する', class: "btn btn-primary" %>
+
+		<% end %>
 	</div>
+</div>
 </div>
