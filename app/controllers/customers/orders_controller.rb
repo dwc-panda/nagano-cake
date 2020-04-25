@@ -43,7 +43,7 @@ class Customers::OrdersController < ApplicationController
     order.order_status = 0 #order_statusをデフォルトで0に設定
     order.postage = 800 #送料を800円に設定
     order.tax = 1.1 #消費税を10%に設定
-    if a_params[:a] == "1"
+    if a_params[:a] == "1" #新しいお届け先を選択していた場合、配送先を保存する
       # delivery = Delivery.new(order_deli_params)
       # delivery.end_user_id = current_end_user.id
       delivery = current_end_user.deliveries.new(order_deli_params)
