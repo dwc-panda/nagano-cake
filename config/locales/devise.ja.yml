@@ -13,59 +13,35 @@ ja:
         one: "エラーが発生したため保存されませんでした:"
         other: "%{count} 件のエラーが発生したため保存されませんでした:"
 
-
   activerecord:
     errors:
       models:
         end_user:
           attributes:
             first_name:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             last_name:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             first_kana_name:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             last_kana_name:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             email:
               taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             postcode:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             address:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             phone_number:
-              taken: "は既に使用されています。"
               blank: "が入力されていません。"
-              too_short: "は%{count}文字以上に設定して下さい。"
-              too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
             password:
               taken: "は既に使用されています。"
@@ -74,6 +50,33 @@ ja:
               too_long: "は%{count}文字以下に設定して下さい。"
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
+
+        delivery:
+          attributes:
+            address:
+              blank: "が入力されていません。"
+            postcode:
+              blank: "が入力されていません。"
+            direction:
+              blank: "が入力されていません。"
+
+        genre:
+          attributes:
+            name:
+              blank: "が入力されていません。"
+
+        item:
+          attributes:
+            name:
+              blank: "が入力されていません。"
+            image:
+              blank: "が入力されていません。"
+            detail:
+              blank: "が入力されていません。"
+            non_taxed_price:
+              blank: "が入力されていません。"
+            genre:
+              required: "が入力されていません。"
     attributes:
       end_user:
         current_password: "現在のパスワード"
@@ -88,6 +91,21 @@ ja:
         password: パスワード
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
+
+      delivery:
+        address: 住所
+        postcode: 郵便番号
+        direction: 宛名
+
+      genre:
+        name: ジャンル名
+
+      item:
+        name: 名前
+        image: 画像
+        detail: 詳細
+        non_taxed_price: 販売料金
+        genre: ジャンル名
     models:
       end_user: "ユーザ"
   devise:
@@ -146,4 +164,9 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+
+
+
+
+
 
