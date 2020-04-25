@@ -18,8 +18,8 @@ class Admins::OrdersController < ApplicationController
     # @order.update(order_params)
     # redirect_to admins_orders_path
     @order.update(order_params)
-    if @order.order_status == "入金確認"
-        @order.order_details.each do |order_detail|
+    if @order.order_status == "入金確認" #注文ステータスが入金確認の場合
+        @order.order_details.each do |order_detail| #全ての製作ステータスを更新する
           order_detail.item_status = 1
           order_detail.save
         end
