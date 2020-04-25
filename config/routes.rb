@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   namespace :admins do
     root to: 'homes#top'
     devise_for :users, controllers: {
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
     post 'orders/confirm' => 'orders#confirm', as: :order_confirm
     resources :orders, only: [:index, :new, :create, :show]
     get 'homes/about' => 'homes#about', as: :about
+    get 'genres/:id' => 'genres#search', as: :search
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
