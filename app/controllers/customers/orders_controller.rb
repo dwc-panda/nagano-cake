@@ -12,7 +12,7 @@ class Customers::OrdersController < ApplicationController
     if order_params[:select_address] == "1" #お届け先でご自身の住所を選んだ場合
       @address = current_end_user.address
       @postcode = current_end_user.postcode
-      @direction = current_end_user.first_name
+      @direction = current_end_user.first_name+current_end_user.last_name
       @a = 0
     elsif order_params[:select_address] == "2" #お問合せで登録済み住所から選択を選んだ場合
       delivery = Delivery.find(order_params[:address_id])
