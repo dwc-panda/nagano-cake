@@ -35,11 +35,8 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-1 col-xs-offset-2 ">
-			<label>
-				<span class="btn btn-primary">画像選択<input type="file" style="display:none"></span>
-			</label>
+			<%= f.attachment_field :image %>
 		</div>
-		 <%= f.attachment_field :image %>
 		<div class="col-xs-1 col-xs-offset-3 ">
 			<%= f.submit "新規登録",class: "btn btn-primary" %>
 		</div>

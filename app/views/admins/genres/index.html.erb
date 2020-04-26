@@ -18,10 +18,10 @@
 			<div class="field">
 				<%= f.label :ジャンル %>
 				<%= f.text_field :name %>
-				<%= f.label :is_valid, "有効" %>
-				<%= f.radio_button :is_valid, "有効" %>
-				<%= f.label :is_valid, "無効" %>
-				<%= f.radio_button :is_valid, "無効" %>
+				<%= f.label :is_valid, "販売中" %>
+				<%= f.radio_button :is_valid, "販売中" %>
+				<%= f.label :is_valid, "売切れ" %>
+				<%= f.radio_button :is_valid, "売切れ" %>
 				<%= f.submit "追加", class: "btn btn-primary" %>
 			</div>
 			<% end %>

@@ -4,7 +4,7 @@ class Genre < ApplicationRecord
 	validates :name, presence: true
 
 	enum is_valid: {
-		無効: true,
-		有効: false
+		売切れ: true,
+		販売中: false
 	}
 end
