@@ -1,0 +1,94 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        end_user:
+          attributes:
+            first_name:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            last_name:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            first_kana_name:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            last_kana_name:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            email:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            postcode:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            address:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            phone_number:
+              blank: "が入力されていません。"
+              invalid: "は有効でありません。"
+            password:
+              taken: "は既に使用されています。"
+              blank: "が入力されていません。"
+              too_short: "は%{count}文字以上に設定して下さい。"
+              too_long: "は%{count}文字以下に設定して下さい。"
+              invalid: "は有効でありません。"
+              confirmation: "が内容とあっていません。"
+
+        delivery:
+          attributes:
+            address:
+              blank: "が入力されていません。"
+            postcode:
+              blank: "が入力されていません。"
+            direction:
+              blank: "が入力されていません。"
+
+        genre:
+          attributes:
+            name:
+              blank: "が入力されていません。"
+
+        item:
+          attributes:
+            name:
+              blank: "が入力されていません。"
+            image:
+              blank: "が入力されていません。"
+            detail:
+              blank: "が入力されていません。"
+            non_taxed_price:
+              blank: "が入力されていません。"
+            genre:
+              required: "が入力されていません。"
+    attributes:
+      end_user:
+        current_password: "現在のパスワード"
+        first_name: 名字
+        last_name: 名前
+        first_kana_name: カナ名字
+        last_kana_name: カナ名前
+        email: メールアドレス
+        postcode: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        password: パスワード
+        password_confirmation: "確認用パスワード"
+        remember_me: "次回から自動的にログイン"
+
+      delivery:
+        address: 住所
+        postcode: 郵便番号
+        direction: 宛名
+
+      genre:
+        name: ジャンル名
+
+      item:
+        name: 名前
+        image: 画像
+        detail: 詳細
+        non_taxed_price: 販売料金
+        genre: ジャンル名
