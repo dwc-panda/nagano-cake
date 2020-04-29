@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">
+      <div class="sign-title">
+
+        <%= flash[:error] %>
+        <h4>管理者の方はこちらからログイン</h4>
+      </div>
+    </div>
+  </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+      <div class="name">
+        <p>メールアドレス</p>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="sign-field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "30" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-2">
+      <div class="name">
+        <p>パスワード</p>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="sign-field">
+        <%= f.password_field :password, autocomplete: "current-password", :size => "30" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-6">
+      <%= link_to "=> パスワードを忘れた方はこちら", new_admins_user_password_path %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2 col-xs-offset-4">
+      <div class="actions">
+        <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-2">
+      <h4>登録がお済みでない場合</h4>
+      <%= link_to 'こちら', new_admins_user_registration_path %> から新規登録を行ってください。
+    </div>
+  </div>
+</div>
+
+

@@ -1,2 +1,0 @@
-class Deliverie < ApplicationRecord
-end

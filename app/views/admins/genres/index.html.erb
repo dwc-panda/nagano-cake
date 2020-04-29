@@ -1,0 +1,52 @@
+<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-5 col-xs-offset-1">
+			<div class="title">
+				<h2>ジャンル追加・一覧画面</h2>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<%= form_for [:admins, @genre] do |f| %>
+			<%= render 'layouts/error_messages', model: f.object %>
+			<div class="field">
+				<%= f.label :ジャンル %>
+				<%= f.text_field :name %>
+				<%= f.label :is_valid, "販売中" %>
+				<%= f.radio_button :is_valid, "販売中" %>
+				<%= f.label :is_valid, "売切れ" %>
+				<%= f.radio_button :is_valid, "売切れ" %>
+				<%= f.submit "追加", class: "btn btn-primary" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<table class="table">
+				<thead>
+					<tr class="active">
+						<th>ジャンル</th>
+						<th>状態</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @genres.each do |genre| %>
+					<tr>
+						<td><%= genre.name %></td>
+						<td><%= genre.is_valid %></td>
+						<td><%= link_to "編集する", edit_admins_genre_path(genre), class: "btn btn-primary" %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

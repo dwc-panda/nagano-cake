@@ -1,0 +1,51 @@
+<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<h2>商品一覧画面</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<table class="table">
+				<thead>
+					<tr class="active">
+						<th>商品ID</th>
+						<th>商品名</th>
+						<th>税込価格</th>
+						<th>ジャンル</th>
+						<th>ステータス</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @items.each do |item| %>
+					<tr>
+						<td><%= item.id %></td>
+						<td>
+							<%= link_to admins_item_path(item) do %>
+							<%= item.name %>
+							<% end %>
+						</td>
+						<td><%= item.non_taxed_price.floor.to_s(:delimited) %></td>
+						<td><%= item.genre.name %></td>
+						<td><%= item.is_valid %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<div class="row">
+				<div class="col-xs-3 col-xs-offset-1">
+					<%= link_to "商品新規登録", new_admins_item_path, class: "btn btn-primary" %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

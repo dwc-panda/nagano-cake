@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_082950) do
+ActiveRecord::Schema.define(version: 2020_04_16_115208) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "end_user_id"
@@ -39,12 +39,21 @@ ActiveRecord::Schema.define(version: 2020_04_16_082950) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.boolean "is_deleted", default: false, null: false
+    t.index ["email"], name: "index_end_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_valid", default: false, null: false
   end
 
   create_table "items", force: :cascade do |t|
@@ -55,6 +64,7 @@ ActiveRecord::Schema.define(version: 2020_04_16_082950) do
     t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_valid", default: false, null: false
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -79,6 +89,18 @@ ActiveRecord::Schema.define(version: 2020_04_16_082950) do
     t.integer "order_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

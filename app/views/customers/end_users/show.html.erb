@@ -1,0 +1,83 @@
+<% if flash[:notice] %>
+	<div class="flash">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-1">
+			<div class="title">
+				<h2>マイページ</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-1 col-xs-offset-1">
+				<h4>登録情報</h4>
+		</div>
+		<div class="col-xs-1">
+				<h5><%= link_to '編集する', edit_end_user_path(@end_user) %></h5>
+		</div>
+		<div class="col-xs-2">
+				<h5><%= link_to 'パスワードを変更する', edit_end_user_registration_path %></h5>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-1">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>氏名</td>
+						<td><%= @end_user.first_name %> <%= @end_user.last_name %></td>
+					</tr>
+					<tr>
+						<td>カナ</td>
+						<td><%= @end_user.first_kana_name %> <%= @end_user.last_kana_name %></td>
+					</tr>
+					<tr>
+						<td>郵便番号</td>
+						<td><%= @end_user.postcode %></td>
+					</tr>
+					<tr>
+						<td>住所</td>
+						<td><%= @end_user.address %></td>
+					</tr>
+					<tr>
+						<td>電話番号</td>
+						<td><%= @end_user.phone_number %></td>
+					</tr>
+					<tr>
+						<td>メールアドレス</td>
+						<td><%= @end_user.email %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-1 col-xs-offset-1">
+				<h4>配送先</h4>
+		</div>
+		<div class="col-xs-1">
+				<h5><%= link_to '一覧を見る', deliveries_path %></h5>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-1 col-xs-offset-1">
+				<h4>注文履歴</h4>
+		</div>
+		<div class="col-xs-1">
+				<h5><%= link_to '一覧を見る', orders_path %></h5>
+		</div>
+	</div>
+</div>
